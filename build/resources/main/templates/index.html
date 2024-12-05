@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Search</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+</head>
+<body class="bg-gray-100 p-6">
+<div class="container mx-auto">
+    <h1 class="text-3xl font-bold mb-6">Product Search</h1>
+    <form id="searchForm" method="get" class="mb-6">
+        <div class="mb-4">
+            <label for="searchQuery" class="block text-lg font-medium text-gray-700">Search</label>
+            <input type="text" id="searchQuery" name="searchQuery" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" placeholder="Enter product name">
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const searchQuery = document.getElementById('searchQuery').value;
+        if (searchQuery) {
+            this.action = `/html/${encodeURIComponent(searchQuery)}`;
+            this.submit();
+        }
+    });
+</script>
+</body>
+</html>

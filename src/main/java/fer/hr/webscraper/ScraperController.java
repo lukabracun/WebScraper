@@ -23,13 +23,13 @@ public class ScraperController {
 
     @GetMapping(path = "/html/{searchQuery}")
     public String getDataHtml(@PathVariable String searchQuery, Model model) {
-        Set<ResponseDTO> results = scraperService.getData(searchQuery);
+        Set<Item> results = scraperService.getData(searchQuery);
         model.addAttribute("results", results);
         return "searchResults";
     }
 
     @GetMapping(path = "/{searchQuery}")
-    public Set<ResponseDTO> getData(@PathVariable String searchQuery) {
+    public Set<Item> getData(@PathVariable String searchQuery) {
         return scraperService.getData(searchQuery);
     }
 }

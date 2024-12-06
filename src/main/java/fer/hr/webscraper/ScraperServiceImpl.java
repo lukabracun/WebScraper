@@ -18,127 +18,127 @@ public class ScraperServiceImpl {
     @Value("#{'${website.urls}'.split(',')}")
     List<String> urls;
 
-    public Set<ResponseDTO> getData(String query) {
-        Set<ResponseDTO> responseDTOS = new HashSet<>();
+    public Set<Item> getData(String query) {
+        Set<Item> items = new HashSet<>();
         for (String url: urls) {
             if (url.contains("instar-informatika")) {
-                extractDataFromInstar(responseDTOS, url + query);
+                extractDataFromInstar(items, url + query);
             } else if (url.contains("links.hr")) {
-                extractDataFromLinks(responseDTOS, url + query);
+                extractDataFromLinks(items, url + query);
             } else if (url.contains("sancta-domenica")) {
-                extractDataFromSanctaDomenica(responseDTOS, url + query);
+                extractDataFromSanctaDomenica(items, url + query);
             } else if (url.contains("mikronis")) {
-                extractDataFromMikronis(responseDTOS, url + query);
+                extractDataFromMikronis(items, url + query);
             }
         }
-        return responseDTOS;
+        return items;
     }
 
-    private void extractDataFromInstar(Set<ResponseDTO> responseDTOS, String url) {
+    private void extractDataFromInstar(Set<Item> items, String url) {
         try {
             Document document = Jsoup.connect(url).get();
             Elements elements = document.getElementsByClass("product-item-box");
 
             for (Element ads: elements) {
-                ResponseDTO responseDTO = new ResponseDTO();
-                responseDTO.setTitle(ads.select("a.productEntityClick span").text());
-                responseDTO.setUrl("https://www.instar-informatika.hr" + ads.select("a.productEntityClick").attr("href"));
+                Item item = new Item();
+                item.setTitle(ads.select("a.productEntityClick span").text());
+                item.setUrl("https://www.instar-informatika.hr" + ads.select("a.productEntityClick").attr("href"));
                 Element imgElement = ads.selectFirst("div.product-image img");
                 if (imgElement != null) {
-                    responseDTO.setPictureUrl(imgElement.attr("src"));
+                    item.setPictureUrl(imgElement.attr("src"));
                 }
                 Element priceElement = ads.selectFirst("div.price span.standard-price");
                 if (priceElement != null) {
-                    responseDTO.setPrice(priceElement.text());
+                    item.setPrice(priceElement.text());
                 }
-                responseDTO.setStore("Instar");
-                responseDTOS.add(responseDTO);
+                item.setStore("Instar");
+                items.add(item);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    private void extractDataFromLinks(Set<ResponseDTO> responseDTOS, String url) {
+    private void extractDataFromLinks(Set<Item> items, String url) {
         try {
             Document document = Jsoup.connect(url).get();
             Elements elements = document.getElementsByClass("col-6 col-md-4");
 
             for (Element ads : elements) {
-                ResponseDTO responseDTO = new ResponseDTO();
+                Item item = new Item();
                 Element linkElement = ads.selectFirst("a.card-link");
                 Element imgElement = ads.selectFirst("img.img-fluid");
                 if (linkElement != null) {
-                    responseDTO.setTitle(linkElement.attr("title"));
-                    responseDTO.setUrl("https://www.links.hr" + linkElement.attr("href"));
+                    item.setTitle(linkElement.attr("title"));
+                    item.setUrl("https://www.links.hr" + linkElement.attr("href"));
                 }
                 if (imgElement != null) {
-                    responseDTO.setPictureUrl(imgElement.attr("src"));
+                    item.setPictureUrl(imgElement.attr("src"));
                 }
                 Element priceElement = ads.selectFirst("div.product-price span.active");
                 if (priceElement != null) {
-                    responseDTO.setPrice(priceElement.text());
+                    item.setPrice(priceElement.text());
                 }
-                responseDTO.setStore("Links");
-                responseDTOS.add(responseDTO);
+                item.setStore("Links");
+                items.add(item);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    private void extractDataFromSanctaDomenica(Set<ResponseDTO> responseDTOS, String url) {
+    private void extractDataFromSanctaDomenica(Set<Item> items, String url) {
         try {
             Document document = Jsoup.connect(url).get();
             Elements elements = document.getElementsByClass("product-item-info");
 
             for (Element ads : elements) {
-                ResponseDTO responseDTO = new ResponseDTO();
+                Item item = new Item();
                 Element linkElement = ads.selectFirst("a.product-item-link");
                 Element imgElement = ads.selectFirst("img.photo");
                 if (linkElement != null) {
-                    responseDTO.setTitle(linkElement.text().trim());
-                    responseDTO.setUrl(linkElement.attr("href"));
+                    item.setTitle(linkElement.text().trim());
+                    item.setUrl(linkElement.attr("href"));
                 }
                 if (imgElement != null) {
-                    responseDTO.setPictureUrl(imgElement.attr("src"));
+                    item.setPictureUrl(imgElement.attr("src"));
                 }
                 Element priceElement = ads.selectFirst("div.price-box span span span");
                 if (priceElement != null) {
-                    responseDTO.setPrice(priceElement.text().trim());
+                    item.setPrice(priceElement.text().trim());
                 }
-                responseDTO.setStore("Sancta Domenica");
-                responseDTOS.add(responseDTO);
+                item.setStore("Sancta Domenica");
+                items.add(item);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    private void extractDataFromMikronis(Set<ResponseDTO> responseDTOS, String url) {
+    private void extractDataFromMikronis(Set<Item> items, String url) {
         try {
             Document document = Jsoup.connect(url).get();
             Elements elements = document.getElementsByClass("prod-item");
 
             for (Element ads : elements) {
-                ResponseDTO responseDTO = new ResponseDTO();
+                Item item = new Item();
                 Element linkElement = ads.selectFirst("a[onclick]");
                 Element imgElement = ads.selectFirst("img.img-responsive");
                 if (linkElement != null) {
-                    responseDTO.setTitle(linkElement.attr("title"));
+                    item.setTitle(linkElement.attr("title"));
                     String onclickAttr = linkElement.attr("onclick");
                     String extractedUrl = StringUtils.substringBetween(onclickAttr, "', '", "',");
                     System.out.println(extractedUrl);
-                    responseDTO.setUrl("https://www.mikronis.hr" + extractedUrl);
+                    item.setUrl("https://www.mikronis.hr" + extractedUrl);
                 }
                 if (imgElement != null) {
-                    responseDTO.setPictureUrl("https://www.mikronis.hr" + imgElement.attr("src"));
+                    item.setPictureUrl("https://www.mikronis.hr" + imgElement.attr("src"));
                 }
                 Element priceElement = ads.selectFirst("li.item-price a");
                 if (priceElement != null) {
-                    responseDTO.setPrice(priceElement.text());
+                    item.setPrice(priceElement.text());
                 }
-                responseDTO.setStore("Mikronis");
-                responseDTOS.add(responseDTO);
+                item.setStore("Mikronis");
+                items.add(item);
             }
         } catch (IOException ex) {
             ex.printStackTrace();

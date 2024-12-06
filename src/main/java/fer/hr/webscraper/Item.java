@@ -1,20 +1,26 @@
 package fer.hr.webscraper;
 
-public class ResponseDTO {
+public class Item {
     String title;
     String url;
     String pictureUrl;
     String price;
     String store;
+    String state;
+    boolean isDiscounted;
+    int group;
 
-    public ResponseDTO() {
+    public Item() {
     }
-    public ResponseDTO(String title, String url, String pictureUrl, String price, String store) {
+    public Item(String title, String url, String pictureUrl, String price, String store, String state, boolean isDiscounted, int group) {
         this.title = title;
         this.url = url;
         this.pictureUrl = pictureUrl;
         this.price = price;
         this.store = store;
+        this.state = state;
+        this.isDiscounted = isDiscounted;
+        this.group = group;
     }
 
     public String getTitle() {
@@ -29,7 +35,6 @@ public class ResponseDTO {
     public void setUrl(String url) {
         this.url = url;
     }
-
     public String getPictureUrl() {
         return pictureUrl;
     }
@@ -52,5 +57,29 @@ public class ResponseDTO {
 
     public void setStore(String store) {
         this.store = store;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public boolean isDiscounted() {
+        return isDiscounted;
+    }
+
+    public void setDiscounted(boolean discounted) {
+        isDiscounted = discounted;
+    }
+
+    public int getGroup() {
+        return group;
+    }
+
+    public void setGroup(int group) {
+        this.group = group;
     }
 }

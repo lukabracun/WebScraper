@@ -8,7 +8,7 @@ export default function Header() {
             <div> {/* element je skriven */} </div> 
             <img src={logo} className="logo"></img>
             <div className="cart-container">
-                <div className="cart-total">0</div>
+                <div className="cart-total">15</div>
                 <SlBag className="cart-icon" />
             </div>
         </div>

@@ -19,7 +19,7 @@ body {
 
 .header-container {
     display: flex;
-    margin-bottom: 21vh;
+    margin-bottom: 30vh;
     margin-top: 0vh;
     margin-left: 0vw;
     margin-right: 0vw;
@@ -38,6 +38,7 @@ body {
 } */
 
 .logo {
+    max-width: 400px;
     margin: 1vw 1vh;
 }
 
@@ -45,13 +46,14 @@ body {
     margin: 0px;
 }
 
-.cart-icon:hover {
+.cart-icon:hover, .logo:hover {
     cursor: pointer;
 }
 
 .cart-total {
     font-size: x-large;
     color: rgb(179, 69, 0);
+    font-weight: bold;
 }
 
 .cart-icon {
@@ -68,8 +70,9 @@ body {
 
 .search-container{
     display: flex;
+    min-width: 430px;
     width: 40vw;
-    height: 90px;
+    height: 11vh;
     border: 3px solid rgb(179, 69, 0);
     border-radius: 1.1vw;
     justify-content: space-evenly;
@@ -78,8 +81,8 @@ body {
 }
 
 .search-icon {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
 
 .search-icon:hover {
@@ -87,10 +90,12 @@ body {
 }
 
 .search-field {
+    min-width: none;
+    white-space: nowrap;
     border: hidden;
     height: 60%;
     flex-grow: 0.85;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .search-field:focus {
@@ -99,3 +104,47 @@ body {
 
 /* footer */
 
+.footer-container {
+    display: flex;
+    margin-bottom: 0vh;
+    margin-top: 30vh;
+    margin-left: 0vw;
+    margin-right: 0vw;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fer-logo {
+    max-width: 200px;
+    height: auto;
+    min-width: 9%;
+}
+
+.footer-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(179, 69, 0);;
+}
+
+.footer-text:hover, .fer-logo:hover {
+    cursor: pointer;
+}
+
+/* blocks */
+
+.block {
+    width: 30vw;
+}
+
+#top-block {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+#bottom-block {
+    position: absolute;
+    transform: rotate(180deg);
+    right: 0px;
+    bottom: 0px;
+}

@@ -23,7 +23,6 @@ public class MikronisData {
                     item.setTitle(linkElement.attr("title"));
                     String onclickAttr = linkElement.attr("onclick");
                     String extractedUrl = StringUtils.substringBetween(onclickAttr, "', '", "',");
-                    System.out.println(extractedUrl);
                     item.setUrl("https://www.mikronis.hr" + extractedUrl);
                 }
                 if (imgElement != null) {

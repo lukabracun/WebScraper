@@ -82,4 +82,18 @@ public class Item {
     public void setGroup(int group) {
         this.group = group;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", pictureUrl='" + pictureUrl + '\'' +
+                ", price='" + price + '\'' +
+                ", store='" + store + '\'' +
+                ", state='" + state + '\'' +
+                ", isDiscounted=" + isDiscounted +
+                ", group=" + group +
+                '}';
+    }
 }

@@ -9,6 +9,7 @@ public class Item {
     String state;
     boolean isDiscounted;
     int group;
+    //@todo:  dodat discount, old price, dostupnost, additional info
 
     public Item() {
     }

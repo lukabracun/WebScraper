@@ -17,6 +17,7 @@ public class ScraperServiceImpl {
     private final MikronisData mikronisData;
     private final CentarTehnikeData hgSpotData;
     private final RonisData ronisData;
+    private final EkupiData mallData;
     public ScraperServiceImpl() {
         this.instarData = new InstarData();
         this.linksData = new LinksData();
@@ -24,6 +25,7 @@ public class ScraperServiceImpl {
         this.mikronisData = new MikronisData();
         this.hgSpotData = new CentarTehnikeData();
         this.ronisData = new RonisData();
+        this.mallData = new EkupiData();
     }
 
     public Set<Item> getData(String query) {
@@ -41,6 +43,8 @@ public class ScraperServiceImpl {
                 hgSpotData.extractDataFromCentarTehnike(items, url + query);
             } else if (url.contains("ronis")) {
                 ronisData.extractDataFromRonis(items, url + query);
+            } else if (url.contains("ekupi")) {
+                mallData.extractDataFromEkupi(items, url + query);
             }
         }
         return items;

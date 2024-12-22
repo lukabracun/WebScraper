@@ -84,11 +84,11 @@ public class Item {
     }
 
     public int getGroup() {
-        return group;
+        return groupId;
     }
 
-    public void setGroup(int group) {
-        this.group = group;
+    public void setGroup(int groupId) {
+        this.groupId = groupId;
     }
 
     public String getDiscount() {

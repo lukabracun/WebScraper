@@ -20,11 +20,11 @@ public class LinksData {
                 Element linkElement = ads.selectFirst("a.card-link");
                 Element imgElement = ads.selectFirst("img.img-fluid");
                 if (linkElement != null) {
-                    item.setTitle(linkElement.attr("title"));
+                    item.setName(linkElement.attr("title"));
                     item.setUrl("https://www.links.hr" + linkElement.attr("href"));
                 }
                 if (imgElement != null) {
-                    item.setPictureUrl(imgElement.attr("src"));
+                    item.setImageUrl(imgElement.attr("src"));
                 }
                 Element priceElement = ads.selectFirst("div.product-price span.active");
                 if (priceElement != null) {
@@ -39,7 +39,7 @@ public class LinksData {
                     item.setDiscount(discountElement.text().trim());
                     item.setDiscounted(true);
                 }
-                item.setStore("Links");
+                item.setStoreName("Links");
                 items.add(item);
             }
         } catch (IOException ex) {

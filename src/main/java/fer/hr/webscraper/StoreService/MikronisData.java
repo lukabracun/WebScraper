@@ -20,12 +20,12 @@ public class MikronisData {
                 Element linkElement = ads.selectFirst("div.item-pic a");
                 Element imgElement = ads.selectFirst("div.item-pic img.img-responsive");
                 if (linkElement != null) {
-                    item.setTitle(linkElement.attr("title"));
+                    item.setName(linkElement.attr("title"));
                     String extractedUrl = linkElement.attr("href");
                     item.setUrl("https://www.mikronis.hr" + extractedUrl);
                 }
                 if (imgElement != null) {
-                    item.setPictureUrl("https://www.mikronis.hr" + imgElement.attr("src"));
+                    item.setImageUrl("https://www.mikronis.hr" + imgElement.attr("src"));
                 }
                 Element priceElement = ads.selectFirst("li.item-price a");
                 if (priceElement != null) {
@@ -39,7 +39,7 @@ public class MikronisData {
                 if (discountElement != null) {
                     item.setAdditionalInfo(discountElement.text().trim());
                 }
-                item.setStore("Mikronis");
+                item.setStoreName("Mikronis");
                 items.add(item);
             }
         } catch (IOException ex) {

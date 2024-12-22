@@ -26,11 +26,11 @@ public class CentarTehnikeData {
                 Element availabilityElement = ads.selectFirst("span.cp-unavailable-btn span");
 
                 if (linkElement != null) {
-                    item.setTitle(titleElement.text());
+                    item.setName(titleElement.text());
                     item.setUrl(linkElement.attr("href"));
                 }
                 if (imgElement != null) {
-                    item.setPictureUrl(imgElement.attr("src"));
+                    item.setImageUrl(imgElement.attr("src"));
                 }
                 if (priceElement != null) {
                     item.setPrice(priceElement.text().trim());
@@ -47,7 +47,7 @@ public class CentarTehnikeData {
                 } else {
                     item.setAvailability("Dostupno");
                 }
-                item.setStore("Centar Tehnike");
+                item.setStoreName("Centar Tehnike");
                 items.add(item);
             }
         } catch (IOException ex) {

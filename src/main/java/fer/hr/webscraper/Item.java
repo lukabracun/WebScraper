@@ -5,14 +5,14 @@ public class Item {
     String url;
     String imageUrl;
     String price;
-    String store;
+    String storeName;
     String state;
     boolean isDiscounted;
     String discount;
     String oldPrice;
     String availability;
     String additionalInfo;
-    int groupId;
+    int groupId = 1;
 
     public Item() {
     }
@@ -21,7 +21,7 @@ public class Item {
         this.url = url;
         this.imageUrl = imageUrl;
         this.price = price;
-        this.store = store;
+        this.storeName = store;
         this.state = state;
         this.isDiscounted = isDiscounted;
         this.groupId = groupId;
@@ -31,10 +31,10 @@ public class Item {
         this.additionalInfo = additionalInfo;
     }
 
-    public String getTitle() {
+    public String getName() {
         return title;
     }
-    public void setTitle(String title) {
+    public void setName(String title) {
         this.title = title;
     }
     public String getUrl() {
@@ -43,11 +43,11 @@ public class Item {
     public void setUrl(String url) {
         this.url = url;
     }
-    public String getPictureUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setPictureUrl(String imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
@@ -59,12 +59,12 @@ public class Item {
         this.price = price;
     }
 
-    public String getStore() {
-        return store;
+    public String getStoreName() {
+        return storeName;
     }
 
-    public void setStore(String store) {
-        this.store = store;
+    public void setStoreName(String store) {
+        this.storeName = store;
     }
 
     public String getState() {
@@ -83,11 +83,11 @@ public class Item {
         isDiscounted = discounted;
     }
 
-    public int getGroup() {
+    public int getGroupId() {
         return groupId;
     }
 
-    public void setGroup(int groupId) {
+    public void setGroupId(int groupId) {
         this.groupId = groupId;
     }
 
@@ -128,16 +128,16 @@ public class Item {
         return "Item{" +
                 "title='" + title + '\'' +
                 ", url='" + url + '\'' +
-                ", pictureUrl='" + imageUrl + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", price='" + price + '\'' +
-                ", store='" + store + '\'' +
+                ", store='" + storeName + '\'' +
                 ", state='" + state + '\'' +
                 ", isDiscounted=" + isDiscounted +
                 ", discount='" + discount + '\'' +
                 ", oldPrice='" + oldPrice + '\'' +
                 ", availability='" + availability + '\'' +
                 ", additionalInfo='" + additionalInfo + '\'' +
-                ", group=" + groupId +
+                ", groupId=" + groupId +
                 '}';
     }
 }

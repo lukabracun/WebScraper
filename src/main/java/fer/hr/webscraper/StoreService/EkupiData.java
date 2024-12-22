@@ -26,14 +26,14 @@ public class EkupiData {
                 Element availabilityElement = ads.selectFirst("p.delivery-date span.ddate");
 
                 if (linkElement != null) {
-                    item.setTitle(linkElement.attr("title"));
+                    item.setName(linkElement.attr("title"));
                     item.setUrl("https://www.ekupi.hr/hr/" + linkElement.attr("href"));
                 }
                 if (imgElement != null) {
-                    item.setPictureUrl(imgElement.attr("src"));
+                    item.setImageUrl(imgElement.attr("src"));
                 }
                 if (titleElement != null) {
-                    item.setTitle(titleElement.text().trim());
+                    item.setName(titleElement.text().trim());
                 }
                 if (priceElement != null) {
                     item.setPrice(priceElement.text().trim());
@@ -48,7 +48,7 @@ public class EkupiData {
                 if (availabilityElement != null) {
                     item.setAvailability(availabilityElement.text().trim());
                 }
-                item.setStore("ekupi");
+                item.setStoreName("ekupi");
                 items.add(item);
             }
         } catch (IOException ex) {

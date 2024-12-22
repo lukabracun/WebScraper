@@ -20,11 +20,11 @@ public class SanctaData {
                 Element linkElement = ads.selectFirst("a.product-item-link");
                 Element imgElement = ads.selectFirst("img.photo");
                 if (linkElement != null) {
-                    item.setTitle(linkElement.text().trim());
+                    item.setName(linkElement.text().trim());
                     item.setUrl(linkElement.attr("href"));
                 }
                 if (imgElement != null) {
-                    item.setPictureUrl(imgElement.attr("src"));
+                    item.setImageUrl(imgElement.attr("src"));
                 }
                 Element priceElement = ads.selectFirst("div.price-box span span span");
                 if (priceElement != null) {
@@ -42,7 +42,7 @@ public class SanctaData {
                 if (additionalInfoElement != null) {
                     item.setAdditionalInfo(additionalInfoElement.text().trim());
                 }
-                item.setStore("Sancta Domenica");
+                item.setStoreName("Sancta Domenica");
                 items.add(item);
             }
         } catch (IOException ex) {

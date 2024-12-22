@@ -17,11 +17,11 @@ public class InstarData {
 
             for (Element ads: elements) {
                 Item item = new Item();
-                item.setTitle(ads.select("a.productEntityClick span").text());
+                item.setName(ads.select("a.productEntityClick span").text());
                 item.setUrl("https://www.instar-informatika.hr" + ads.select("a.productEntityClick").attr("href"));
                 Element imgElement = ads.selectFirst("div.product-image img");
                 if (imgElement != null) {
-                    item.setPictureUrl(imgElement.attr("src"));
+                    item.setImageUrl(imgElement.attr("src"));
                 }
                 Element priceElement = ads.selectFirst("div.price span.standard-price");
                 if (priceElement != null) {
@@ -42,7 +42,7 @@ public class InstarData {
                 } else {
                     item.setAvailability("Nije dostupno");
                 }
-                item.setStore("Instar");
+                item.setStoreName("Instar Informatika");
                 items.add(item);
             }
         } catch (IOException ex) {

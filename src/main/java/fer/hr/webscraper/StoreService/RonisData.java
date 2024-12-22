@@ -24,11 +24,11 @@ public class RonisData {
                 Element discountElement = ads.selectFirst("div.pricemin-title span");
 
                 if (linkElement != null) {
-                    item.setTitle(titleElement.text());
+                    item.setName(titleElement.text());
                     item.setUrl("https://www.ronis.hr" + linkElement.attr("href"));
                 }
                 if (imgElement != null) {
-                    item.setPictureUrl(imgElement.attr("src"));
+                    item.setImageUrl(imgElement.attr("src"));
                 }
                 if (priceElement != null) {
                     item.setPrice(priceElement.text().trim());
@@ -36,7 +36,7 @@ public class RonisData {
                 if (discountElement != null) {
                     item.setAdditionalInfo(discountElement.text().trim());
                 }
-                item.setStore("Ronis");
+                item.setStoreName("Ronis");
                 items.add(item);
             }
         } catch (IOException ex) {

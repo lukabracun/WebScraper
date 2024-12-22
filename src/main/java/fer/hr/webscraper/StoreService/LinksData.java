@@ -1,5 +1,6 @@
-package fer.hr.webscraper;
+package fer.hr.webscraper.StoreService;
 
+import fer.hr.webscraper.Item;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -28,6 +29,15 @@ public class LinksData {
                 Element priceElement = ads.selectFirst("div.product-price span.active");
                 if (priceElement != null) {
                     item.setPrice(priceElement.text());
+                }
+                Element oldPriceElement = ads.selectFirst("div.product-price span.inactive");
+                if (oldPriceElement != null) {
+                    item.setOldPrice(oldPriceElement.text().trim());
+                }
+                Element discountElement = ads.selectFirst("span.badge-discount");
+                if (discountElement != null) {
+                    item.setDiscount(discountElement.text().trim());
+                    item.setDiscounted(true);
                 }
                 item.setStore("Links");
                 items.add(item);

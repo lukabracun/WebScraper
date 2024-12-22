@@ -1,5 +1,6 @@
-package fer.hr.webscraper;
+package fer.hr.webscraper.StoreService;
 
+import fer.hr.webscraper.Item;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,16 +21,20 @@ public class RonisData {
                 Element imgElement = ads.selectFirst("img.img-fluid");
                 Element titleElement = ads.selectFirst("h2.title a");
                 Element priceElement = ads.selectFirst("span.standard-price");
+                Element discountElement = ads.selectFirst("div.pricemin-title span");
 
                 if (linkElement != null) {
                     item.setTitle(titleElement.text());
-                    item.setUrl(linkElement.attr("href"));
+                    item.setUrl("https://www.ronis.hr" + linkElement.attr("href"));
                 }
                 if (imgElement != null) {
                     item.setPictureUrl(imgElement.attr("src"));
                 }
                 if (priceElement != null) {
                     item.setPrice(priceElement.text().trim());
+                }
+                if (discountElement != null) {
+                    item.setAdditionalInfo(discountElement.text().trim());
                 }
                 item.setStore("Ronis");
                 items.add(item);

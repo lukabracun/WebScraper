@@ -8,12 +8,15 @@ public class Item {
     String store;
     String state;
     boolean isDiscounted;
+    String discount;
+    String oldPrice;
+    String availability;
+    String additionalInfo;
     int group;
-    //@todo:  dodat discount, old price, dostupnost, additional info
 
     public Item() {
     }
-    public Item(String title, String url, String pictureUrl, String price, String store, String state, boolean isDiscounted, int group) {
+    public Item(String title, String url, String pictureUrl, String price, String store, String state, boolean isDiscounted, int group, String discount, String oldPrice, String availability, String additionalInfo) {
         this.title = title;
         this.url = url;
         this.pictureUrl = pictureUrl;
@@ -22,6 +25,10 @@ public class Item {
         this.state = state;
         this.isDiscounted = isDiscounted;
         this.group = group;
+        this.discount = discount;
+        this.oldPrice = oldPrice;
+        this.availability = availability;
+        this.additionalInfo = additionalInfo;
     }
 
     public String getTitle() {
@@ -84,6 +91,38 @@ public class Item {
         this.group = group;
     }
 
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    public String getOldPrice() {
+        return oldPrice;
+    }
+
+    public void setOldPrice(String oldPrice) {
+        this.oldPrice = oldPrice;
+    }
+
+    public String getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -94,6 +133,10 @@ public class Item {
                 ", store='" + store + '\'' +
                 ", state='" + state + '\'' +
                 ", isDiscounted=" + isDiscounted +
+                ", discount='" + discount + '\'' +
+                ", oldPrice='" + oldPrice + '\'' +
+                ", availability='" + availability + '\'' +
+                ", additionalInfo='" + additionalInfo + '\'' +
                 ", group=" + group +
                 '}';
     }

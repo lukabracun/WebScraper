@@ -1,5 +1,6 @@
-package fer.hr.webscraper;
+package fer.hr.webscraper.StoreService;
 
+import fer.hr.webscraper.Item;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,6 +26,21 @@ public class InstarData {
                 Element priceElement = ads.selectFirst("div.price span.standard-price");
                 if (priceElement != null) {
                     item.setPrice(priceElement.text());
+                }
+                Element oldPriceElement = ads.selectFirst("div.pricelistpriceLow span:first-child");
+                if (oldPriceElement != null) {
+                    item.setOldPrice(oldPriceElement.text().trim());
+                }
+                Element discountElement = ads.selectFirst("div.pricelistpriceLow span.order-4");
+                if (discountElement != null) {
+                    item.setDiscount(discountElement.text().trim());
+                    item.setDiscounted(true);
+                }
+                Element availabilityElement = ads.selectFirst("div.product-tehspec_footer.instock span");
+                if (availabilityElement != null) {
+                    item.setAvailability(availabilityElement.text().trim());
+                } else {
+                    item.setAvailability("Nije dostupno");
                 }
                 item.setStore("Instar");
                 items.add(item);

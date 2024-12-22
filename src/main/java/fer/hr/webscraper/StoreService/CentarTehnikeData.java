@@ -1,5 +1,6 @@
-package fer.hr.webscraper;
+package fer.hr.webscraper.StoreService;
 
+import fer.hr.webscraper.Item;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -22,6 +23,7 @@ public class CentarTehnikeData {
                 Element priceElement = ads.selectFirst("div.cp-current-price");
                 Element oldPriceElement = ads.selectFirst("div.modal-old-price");
                 Element discountElement = ads.selectFirst("span.cp-card-discount");
+                Element availabilityElement = ads.selectFirst("span.cp-unavailable-btn span");
 
                 if (linkElement != null) {
                     item.setTitle(titleElement.text());
@@ -33,12 +35,18 @@ public class CentarTehnikeData {
                 if (priceElement != null) {
                     item.setPrice(priceElement.text().trim());
                 }
-                /*if (oldPriceElement != null) {
+                if (oldPriceElement != null) {
                     item.setOldPrice(oldPriceElement.text().trim());
                 }
                 if (discountElement != null) {
                     item.setDiscount(discountElement.text().trim());
-                }*/
+                    item.setDiscounted(true);
+                }
+                if (availabilityElement != null) {
+                    item.setAvailability(availabilityElement.text().trim());
+                } else {
+                    item.setAvailability("Dostupno");
+                }
                 item.setStore("Centar Tehnike");
                 items.add(item);
             }

@@ -1,5 +1,6 @@
-package fer.hr.webscraper;
+package fer.hr.webscraper.StoreService;
 
+import fer.hr.webscraper.Item;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -28,6 +29,18 @@ public class SanctaData {
                 Element priceElement = ads.selectFirst("div.price-box span span span");
                 if (priceElement != null) {
                     item.setPrice(priceElement.text().trim());
+                }
+                Element oldPriceElement = ads.selectFirst("span.old-price span.price");
+                if (oldPriceElement != null) {
+                    item.setOldPrice(oldPriceElement.text().trim());
+                }
+                Element discountElement = ads.selectFirst("span.discount-percent");
+                if (discountElement != null) {
+                    item.setDiscount(discountElement.text().trim());
+                }
+                Element additionalInfoElement = ads.selectFirst("div.promo-code-wrapper span.promo-percent");
+                if (additionalInfoElement != null) {
+                    item.setAdditionalInfo(additionalInfoElement.text().trim());
                 }
                 item.setStore("Sancta Domenica");
                 items.add(item);

@@ -3,10 +3,7 @@ package fer.hr.webscraper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -30,7 +27,7 @@ public class ScraperController {
     }
 
     @GetMapping(path = "/{searchQuery}")
-    public Set<Item> getData(@PathVariable String searchQuery, @RequestBody String body) {
+    public Set<Item> getData(@PathVariable String searchQuery) {
         return scraperService.getData(searchQuery);
     }
 }

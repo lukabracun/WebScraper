@@ -1,5 +1,6 @@
-package fer.hr.webscraper;
+package fer.hr.webscraper.StoreService;
 
+import fer.hr.webscraper.Item;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,10 +18,11 @@ public class EkupiData {
             for (Element ads : elements) {
                 Item item = new Item();
                 Element linkElement = ads.selectFirst("a.thumb");
-                Element imgElement = ads.selectFirst("a.thumb img");
+                Element imgElement = ads.selectFirst("a.thumb > img:not(.PdpStaticSticker)");
                 Element titleElement = ads.selectFirst("a.name");
                 Element priceElement = ads.selectFirst("div.price");
-                Element oldPriceElement = ads.selectFirst("div.item-old-price p.altPrice");
+                Element oldPriceElement = ads.selectFirst("div.item-old-price");
+                Element discountElement = ads.selectFirst("div.price-block p span");
                 Element availabilityElement = ads.selectFirst("p.delivery-date span.ddate");
 
                 if (linkElement != null) {
@@ -28,19 +30,24 @@ public class EkupiData {
                     item.setUrl("https://www.ekupi.hr/hr/" + linkElement.attr("href"));
                 }
                 if (imgElement != null) {
-                    System.out.println(imgElement);
-                    System.out.println("-----------");
                     item.setPictureUrl(imgElement.attr("src"));
+                }
+                if (titleElement != null) {
+                    item.setTitle(titleElement.text().trim());
                 }
                 if (priceElement != null) {
                     item.setPrice(priceElement.text().trim());
                 }
-                /*if (oldPriceElement != null) {
+                if (oldPriceElement != null) {
                     item.setOldPrice(oldPriceElement.text().trim());
+                }
+                if (discountElement != null) {
+                    item.setDiscount(discountElement.text().trim());
+                    item.setDiscounted(true);
                 }
                 if (availabilityElement != null) {
                     item.setAvailability(availabilityElement.text().trim());
-                }*/
+                }
                 item.setStore("ekupi");
                 items.add(item);
             }

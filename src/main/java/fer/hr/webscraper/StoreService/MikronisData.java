@@ -1,6 +1,6 @@
-package fer.hr.webscraper;
+package fer.hr.webscraper.StoreService;
 
-import org.apache.commons.lang3.StringUtils;
+import fer.hr.webscraper.Item;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,12 +17,11 @@ public class MikronisData {
 
             for (Element ads : elements) {
                 Item item = new Item();
-                Element linkElement = ads.selectFirst("a[onclick]");
-                Element imgElement = ads.selectFirst("img.img-responsive");
+                Element linkElement = ads.selectFirst("div.item-pic a");
+                Element imgElement = ads.selectFirst("div.item-pic img.img-responsive");
                 if (linkElement != null) {
                     item.setTitle(linkElement.attr("title"));
-                    String onclickAttr = linkElement.attr("onclick");
-                    String extractedUrl = StringUtils.substringBetween(onclickAttr, "', '", "',");
+                    String extractedUrl = linkElement.attr("href");
                     item.setUrl("https://www.mikronis.hr" + extractedUrl);
                 }
                 if (imgElement != null) {
@@ -31,6 +30,14 @@ public class MikronisData {
                 Element priceElement = ads.selectFirst("li.item-price a");
                 if (priceElement != null) {
                     item.setPrice(priceElement.text());
+                }
+                Element availabilityElement = ads.selectFirst("div.ip-available");
+                if (availabilityElement != null) {
+                    item.setAvailability(availabilityElement.attr("title").trim());
+                }
+                Element discountElement = ads.selectFirst("span.code-discount i");
+                if (discountElement != null) {
+                    item.setAdditionalInfo(discountElement.text().trim());
                 }
                 item.setStore("Mikronis");
                 items.add(item);

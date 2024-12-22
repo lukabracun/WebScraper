@@ -3,7 +3,7 @@ package fer.hr.webscraper;
 public class Item {
     String title;
     String url;
-    String pictureUrl;
+    String imageUrl;
     String price;
     String store;
     String state;
@@ -12,19 +12,19 @@ public class Item {
     String oldPrice;
     String availability;
     String additionalInfo;
-    int group;
+    int groupId;
 
     public Item() {
     }
-    public Item(String title, String url, String pictureUrl, String price, String store, String state, boolean isDiscounted, int group, String discount, String oldPrice, String availability, String additionalInfo) {
+    public Item(String title, String url, String imageUrl, String price, String store, String state, boolean isDiscounted, int groupId, String discount, String oldPrice, String availability, String additionalInfo) {
         this.title = title;
         this.url = url;
-        this.pictureUrl = pictureUrl;
+        this.imageUrl = imageUrl;
         this.price = price;
         this.store = store;
         this.state = state;
         this.isDiscounted = isDiscounted;
-        this.group = group;
+        this.groupId = groupId;
         this.discount = discount;
         this.oldPrice = oldPrice;
         this.availability = availability;
@@ -44,11 +44,11 @@ public class Item {
         this.url = url;
     }
     public String getPictureUrl() {
-        return pictureUrl;
+        return imageUrl;
     }
 
-    public void setPictureUrl(String pictureUrl) {
-        this.pictureUrl = pictureUrl;
+    public void setPictureUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getPrice() {
@@ -128,7 +128,7 @@ public class Item {
         return "Item{" +
                 "title='" + title + '\'' +
                 ", url='" + url + '\'' +
-                ", pictureUrl='" + pictureUrl + '\'' +
+                ", pictureUrl='" + imageUrl + '\'' +
                 ", price='" + price + '\'' +
                 ", store='" + store + '\'' +
                 ", state='" + state + '\'' +
@@ -137,7 +137,7 @@ public class Item {
                 ", oldPrice='" + oldPrice + '\'' +
                 ", availability='" + availability + '\'' +
                 ", additionalInfo='" + additionalInfo + '\'' +
-                ", group=" + group +
+                ", group=" + groupId +
                 '}';
     }
 }

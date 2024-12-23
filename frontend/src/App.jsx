@@ -29,13 +29,13 @@ export default function App() {
   const [storeSelection, setStoreSelection] = useState(stores)  //stanje koje implemetira odabir trgovina
 
   /* komunikacija s posluziteljem */
-  const [response, setResponse] = useState([])  //stanje koje sadrzi odgovor na korisnicki upit
+  const [response, setResponse] = useState(exampleDataSet)  //stanje koje sadrzi odgovor na korisnicki upit
   const [loading, setLoading] = useState(false)   //stanje koje je true kada se dohvaca sadrzaj s API-ja
   const [sendRequest, setSendRequest] = useState(false)   //stanje cija promjena inducira slanje zahtjeva na API
 
   useEffect(() => {
     const fetchData = async () => {
-      const BACKEND_URL = "https://localhost:8080"  //URL posluziteljske strane
+      const BACKEND_URL = "https://localhost:8080/"  //URL posluziteljske strane
       try {
         setLoading(true)
 
@@ -64,6 +64,8 @@ export default function App() {
       }
       setLoading(false)
     }
+
+    { /* neka se doda error state za ako se npr. dućan ne javi unutar 10 sekundi */ }
 
     if ((query.length > 0) && (storeSelection.length > 0)) {  //sadrzaj se dohvaca samo ako postoji upit
                                                               //i barem jedna odabrana trgovina

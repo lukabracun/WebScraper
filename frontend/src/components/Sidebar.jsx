@@ -36,7 +36,7 @@ export default function Sidebar({ appState, storeSelection, setStoreSelection })
                     {stores.map(store => (
                         <div key={store.key} className="store-wrapper">
                             <div className="store-logo-wrapper" href={store.url}>
-                                <a href={store.url}> 
+                                <a href={store.url} target="_"> { /* popravit da se otvara  u novom prozoru */ }
                                     <img className="store-logo" src={store.img} alt={store.name}></img>
                                 </a>
                             </div>

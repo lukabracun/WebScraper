@@ -38,9 +38,9 @@ public class InstarData {
                 }
                 Element availabilityElement = ads.selectFirst("div.product-tehspec_footer.instock span");
                 if (availabilityElement != null) {
-                    item.setAvailability(availabilityElement.text().trim());
+                    item.setState("Dostupno");
                 } else {
-                    item.setAvailability("Nije dostupno");
+                    item.setState("Nedostupno");
                 }
                 item.setStoreName("Instar Informatika");
                 items.add(item);

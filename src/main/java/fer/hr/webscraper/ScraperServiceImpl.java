@@ -51,4 +51,26 @@ public class ScraperServiceImpl {
         return items;
     }
 
+    public Set<Item> getSelectedData(String query, List<String> stores) {
+        Set<Item> items = new HashSet<>();
+        for (String url : urls) {
+            if (url.contains("instar-informatika") && stores.contains("instar")) {
+                instarData.extractDataFromInstar(items, url + query);
+            } else if (url.contains("links.hr") && stores.contains("links")) {
+                linksData.extractDataFromLinks(items, url + query);
+            } else if (url.contains("sancta-domenica") && stores.contains("sancta")) {
+                sanctaData.extractDataFromSanctaDomenica(items, url + query);
+            } else if (url.contains("mikronis") && stores.contains("mikronis")) {
+                mikronisData.extractDataFromMikronis(items, url + query);
+            } else if (url.contains("centar-tehnike") && stores.contains("centar")) {
+                hgSpotData.extractDataFromCentarTehnike(items, url + query);
+            } else if (url.contains("ronis") && stores.contains("ronis")) {
+                ronisData.extractDataFromRonis(items, url + query);
+            } else if (url.contains("ekupi") && stores.contains("ekupi")) {
+                mallData.extractDataFromEkupi(items, url + query);
+            }
+        }
+        return items;
+    }
+
 }

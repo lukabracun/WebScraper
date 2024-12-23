@@ -42,6 +42,7 @@ public class SanctaData {
                 if (additionalInfoElement != null) {
                     item.setAdditionalInfo(additionalInfoElement.text().trim());
                 }
+                item.setState("Dostupno");
                 item.setStoreName("Sancta Domenica");
                 items.add(item);
             }

@@ -46,7 +46,9 @@ public class EkupiData {
                     item.setDiscounted(true);
                 }
                 if (availabilityElement != null) {
-                    item.setAvailability(availabilityElement.text().trim());
+                    item.setState("Dostupno");
+                } else {
+                    item.setState("Nedostupno");
                 }
                 item.setStoreName("ekupi");
                 items.add(item);

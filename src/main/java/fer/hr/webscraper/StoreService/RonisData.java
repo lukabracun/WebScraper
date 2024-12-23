@@ -36,6 +36,7 @@ public class RonisData {
                 if (discountElement != null) {
                     item.setAdditionalInfo(discountElement.text().trim());
                 }
+                item.setState("Dostupno");
                 item.setStoreName("Ronis");
                 items.add(item);
             }

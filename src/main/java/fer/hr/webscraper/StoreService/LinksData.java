@@ -39,6 +39,7 @@ public class LinksData {
                     item.setDiscount(discountElement.text().trim());
                     item.setDiscounted(true);
                 }
+                item.setState("Dostupno");
                 item.setStoreName("Links");
                 items.add(item);
             }

@@ -33,7 +33,9 @@ public class MikronisData {
                 }
                 Element availabilityElement = ads.selectFirst("div.ip-available");
                 if (availabilityElement != null) {
-                    item.setAvailability(availabilityElement.attr("title").trim());
+                    item.setState("Dostupno");
+                } else {
+                    item.setState("Nedostupno");
                 }
                 Element discountElement = ads.selectFirst("span.code-discount i");
                 if (discountElement != null) {

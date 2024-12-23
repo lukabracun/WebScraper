@@ -43,9 +43,9 @@ public class CentarTehnikeData {
                     item.setDiscounted(true);
                 }
                 if (availabilityElement != null) {
-                    item.setAvailability(availabilityElement.text().trim());
+                    item.setState("Nedostupno");
                 } else {
-                    item.setAvailability("Dostupno");
+                    item.setState("Dostupno");
                 }
                 item.setStoreName("Centar Tehnike");
                 items.add(item);

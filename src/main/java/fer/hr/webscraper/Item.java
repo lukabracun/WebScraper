@@ -10,13 +10,12 @@ public class Item {
     boolean isDiscounted;
     String discount;
     String oldPrice;
-    String availability;
     String additionalInfo;
     int groupId = 1;
 
     public Item() {
     }
-    public Item(String title, String url, String imageUrl, String price, String store, String state, boolean isDiscounted, int groupId, String discount, String oldPrice, String availability, String additionalInfo) {
+    public Item(String title, String url, String imageUrl, String price, String store, String state, boolean isDiscounted, int groupId, String discount, String oldPrice, String additionalInfo) {
         this.title = title;
         this.url = url;
         this.imageUrl = imageUrl;
@@ -27,7 +26,6 @@ public class Item {
         this.groupId = groupId;
         this.discount = discount;
         this.oldPrice = oldPrice;
-        this.availability = availability;
         this.additionalInfo = additionalInfo;
     }
 
@@ -107,13 +105,6 @@ public class Item {
         this.oldPrice = oldPrice;
     }
 
-    public String getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
 
     public String getAdditionalInfo() {
         return additionalInfo;
@@ -135,7 +126,6 @@ public class Item {
                 ", isDiscounted=" + isDiscounted +
                 ", discount='" + discount + '\'' +
                 ", oldPrice='" + oldPrice + '\'' +
-                ", availability='" + availability + '\'' +
                 ", additionalInfo='" + additionalInfo + '\'' +
                 ", groupId=" + groupId +
                 '}';

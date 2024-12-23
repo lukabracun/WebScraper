@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body, #root {
+    user-select: none;
+    height: 100vh;
+    font-family: "Tauri", sans-serif;
+}
+
+@font-face {
+    font-family: "Tauri";
+    src: url(/frontend/src/resources/Tauri-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Delius";
+    src: url(/frontend/src/resources/Delius-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+.app-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: 15vh 85vh;
+    height: 100vh;
+}

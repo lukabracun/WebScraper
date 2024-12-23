@@ -1,0 +1,85 @@
+.product-wrapper {
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 20rem;
+    max-height: 16.3rem;
+}
+
+.product-subwrapper {
+    width: 97%;
+    height: 97%;
+    display: grid;
+    padding-top: 3%;
+    padding-right: 3%;
+    grid-template-columns: 1.9fr 1fr;
+    grid-template-rows: 2fr 0.5fr 1fr 0.7fr;
+    justify-content: center;
+    align-items: center;
+}
+
+/* image */ 
+
+.product-image-wrapper {
+    grid-row: 1 / span 3;
+    max-width: 13rem;
+    max-height: 13rem;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    cursor: zoom-in;
+}
+
+/* buttons */
+
+.button-wrapper {
+    grid-row: 4;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.button-wrapper > div:hover {
+    background-color: #8da3c9;
+}
+
+.button-wrapper > div {
+    width: fit-content;
+    display: flex;
+    padding: 0.5vh;
+    gap: 0.35rem;
+    border-radius: 7px;
+    border: 2px solid black;
+    background-color: #577ab7;
+}
+
+/* text */
+
+.product-name-wrapper {
+    align-self: flex-start;
+    max-height: 6.5rem;
+    user-select: text;
+    overflow: scroll;
+}
+
+.product-name {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+.product-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+

@@ -1,0 +1,134 @@
+.header-wrapper {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    color: #EEEEEE;
+    background-color: #2a3444;
+    border-bottom: 3px solid black;
+}
+
+.left-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+    height: 100%;
+}
+
+.right-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+
+.cart-icon:hover, .cart-total:hover, .site-logo {
+    cursor: pointer;
+}
+
+/* logo */
+.site-logo {
+    font-size: 4rem;
+    font-family: "Delius";
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 3%;
+}
+
+/* logo description */
+.site-logo-description {
+    font-size: 1.1rem;
+    color: #CBCBCB;
+    max-width: 12rem;
+    text-align: justify;
+}
+
+/* searchbox */
+.searchbox-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 100%;
+    
+}
+
+.searchbox-subwrapper {
+    height: 53%;
+    flex-grow: 0.4;
+    background-color: #eeeee4;
+    border: 3px solid black;
+    display: flex;
+    border-radius: 1.8rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchbox-subwrapper:hover {
+    background-color: #FFFFF8;
+    cursor: pointer;
+}
+
+.search-field {
+    background-color: inherit;
+    flex-grow: 1;
+    height: 75%;
+    display: flex;
+    align-items: center;
+    border: hidden;
+    font-size: 1.5rem;
+    margin-left: 2.5%;
+}
+
+.search-field:hover {
+    cursor: inherit;
+}
+
+.search-field:focus {
+    outline: 0vw;
+}
+
+.search-icon {
+    color: black;
+    height: 2.3rem;
+    width: 2.3rem;
+    margin-right: 1.5%;
+
+   
+}
+
+.search-icon:hover {
+    cursor: pointer;
+}
+
+
+/* cart */
+.cart-wrapper {
+    display: flex;
+    padding-right: 4%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+.cart-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.cart-number {
+    font-size: x-large;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 8%;
+}

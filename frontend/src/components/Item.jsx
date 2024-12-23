@@ -12,7 +12,7 @@ export default function Products({ CartIcon, product }) {
                         className="product-image" 
                         onClick={(e) => window.open(product.imageUrl)}></img>
                 </div>
-                <a href={product.url} className="button-wrapper">
+                <a href={product.url} target="_blank" className="button-wrapper">
                     <div id="bw1">
                         <span>U trgovini</span>
                         <BiLinkExternal />

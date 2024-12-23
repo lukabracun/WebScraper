@@ -35,7 +35,7 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const BACKEND_URL = "https://localhost:8080/"  //URL posluziteljske strane
+      const BACKEND_URL = "https://localhost:8080/api"  //URL posluziteljske strane
       try {
         setLoading(true)
 

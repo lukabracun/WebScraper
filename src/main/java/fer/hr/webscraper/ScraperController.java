@@ -13,6 +13,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ScraperController {
 
     @Autowired
@@ -31,21 +32,21 @@ public class ScraperController {
     }
 
     @PostMapping(path = "/api")
-    public Set<Item> getDataApi(@RequestBody String body) {
+    public Set<Item> getDataApi(@RequestBody Map<String, Object> body) {
+        System.out.println("Received request");
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            Map<String, Object> jsonMap = objectMapper.readValue(body, Map.class);
-
-            String query = (String) jsonMap.get("query");
-            List<Map<String, Object>> stores = (List<Map<String, Object>>) jsonMap.get("stores");
+            String query = (String) body.get("query");
+            List<Map<String, Object>> stores = (List<Map<String, Object>>) body.get("stores");
 
             System.out.println("Query: " + query);
             List<String> selectedStores = new ArrayList<>();
             for (Map<String, Object> store : stores) {
-                System.out.println("Store Name: " + store.get("name"));
-                if (store.get("checked").equals(true)) {
+                if ((Boolean) store.get("checked")) {
                     selectedStores.add((String) store.get("name"));
                 }
+            }
+            for (String store : selectedStores) {
+                System.out.println("Selected store: " + store);
             }
             return scraperService.getSelectedData(query, selectedStores);
         } catch (Exception e) {

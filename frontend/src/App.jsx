@@ -10,52 +10,54 @@ import { stores } from './data/stores.js'
 import { exampleDataSet } from './data/exampleDataSet.js'
 
 export default function App() {
-  const [appState, setAppState] = useState(0) //stanje aplikacije
-  // 0 = aplikacija je u stanju pretrazivanja
-  // 1 = aplikacija prikazuje rezultate pretrage
+  const [appState, setAppState] = useState(0) // state of the application
+  // 0 = application is in search state
+  // 1 = application displays search results
   const [cart, setCart] = useState(() => {
     let localCart = localStorage.getItem("cart")
     if (localCart == null) return []
     else
       return JSON.parse(localCart)
-  })  //stanje koje implementira kosaricu
+  })  // state that implements the cart
 
-  //perzistencija korisnicke kosarice
+  // persistence of the user's cart
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart))
   }, [cart])
 
-  const [query, setQuery] = useState("")  //stanje koje implementira korisnicki upit
-  const [storeSelection, setStoreSelection] = useState(stores)  //stanje koje implemetira odabir trgovina
+  const [query, setQuery] = useState("")  // state that implements the user's query
+  const [storeSelection, setStoreSelection] = useState(stores)  // state that implements store selection
 
-  /* komunikacija s posluziteljem */
-  const [response, setResponse] = useState(exampleDataSet)  //stanje koje sadrzi odgovor na korisnicki upit
-  const [loading, setLoading] = useState(false)   //stanje koje je true kada se dohvaca sadrzaj s API-ja
-  const [sendRequest, setSendRequest] = useState(false)   //stanje cija promjena inducira slanje zahtjeva na API
+  /* communication with the server */
+  const [response, setResponse] = useState(exampleDataSet)  // state that contains the response to the user's query
+  const [loading, setLoading] = useState(false)   // state that is true when content is being fetched from the API
+  const [sendRequest, setSendRequest] = useState(false)   // state whose change induces sending a request to the API
 
   useEffect(() => {
     const fetchData = async () => {
-      const BACKEND_URL = "https://localhost:8080/api"  //URL posluziteljske strane
+      const BACKEND_URL = "http://localhost:8080/api"  // URL of the server-side
       try {
         setLoading(true)
 
-        //objekt koji se salje na posluzitelja
+        // object to be sent to the server
         let sendObject = {
           query: query,
           stores: storeSelection
         }
-        console.log(sendObject) 
-        
+        console.log(sendObject)
+
         const fetchResponse = await fetch(`${BACKEND_URL}`, {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
           body: JSON.stringify(sendObject)
         })
 
         if (!fetchResponse.ok) {
           throw new Error(`${fetchResponse.status} ${fetchResponse.statusText}`)
         } else {
-
-          const response = await fetchResponse.json();
+          const response = await fetchResponse.json()
           setResponse(response)
         }
 
@@ -65,31 +67,29 @@ export default function App() {
       setLoading(false)
     }
 
-    { /* neka se doda error state za ako se npr. dućan ne javi unutar 10 sekundi */ }
-
-    if ((query.length > 0) && (storeSelection.length > 0)) {  //sadrzaj se dohvaca samo ako postoji upit
-                                                              //i barem jedna odabrana trgovina
+    // fetch content only if there is a query and at least one selected store
+    if ((query.length > 0) && (storeSelection.length > 0)) {
       fetchData()
     }
-    
+
   }, [sendRequest])
 
   return (
-    <div className="app-container">
-      <Header CartIcon={SlBag}
-        appState={appState} setAppState={setAppState}
-        query={query} setQuery={setQuery}
-        cart={cart} 
-        sendRequest={sendRequest} setSendRequest={setSendRequest}/>
-      <Sidebar appState={appState}
-        storeSelection={storeSelection} setStoreSelection={setStoreSelection} />
-      <Products CartIcon={SlBag}
-        appState={appState}
-        cart={cart} setCart={setCart}
-        query={query}
-        storeSelection={storeSelection}
-        response={response} setResponse={setResponse}
-        loading={loading} />
-    </div>
+      <div className="app-container">
+        <Header CartIcon={SlBag}
+                appState={appState} setAppState={setAppState}
+                query={query} setQuery={setQuery}
+                cart={cart}
+                sendRequest={sendRequest} setSendRequest={setSendRequest}/>
+        <Sidebar appState={appState}
+                 storeSelection={storeSelection} setStoreSelection={setStoreSelection} />
+        <Products CartIcon={SlBag}
+                  appState={appState}
+                  cart={cart} setCart={setCart}
+                  query={query}
+                  storeSelection={storeSelection}
+                  response={response} setResponse={setResponse}
+                  loading={loading} />
+      </div>
   )
 }

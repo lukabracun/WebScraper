@@ -19,6 +19,7 @@ public class ScraperServiceImpl {
     private final CentarTehnikeData hgSpotData;
     private final RonisData ronisData;
     private final EkupiData mallData;
+
     public ScraperServiceImpl() {
         this.instarData = new InstarData();
         this.linksData = new LinksData();
@@ -53,22 +54,36 @@ public class ScraperServiceImpl {
 
     public Set<Item> getSelectedData(String query, List<String> stores) {
         Set<Item> items = new HashSet<>();
-        for (String url : urls) {
-            if (url.contains("instar-informatika") && stores.contains("instar")) {
-                instarData.extractDataFromInstar(items, url + query);
-            } else if (url.contains("links.hr") && stores.contains("links")) {
-                linksData.extractDataFromLinks(items, url + query);
-            } else if (url.contains("sancta-domenica") && stores.contains("sancta")) {
-                sanctaData.extractDataFromSanctaDomenica(items, url + query);
-            } else if (url.contains("mikronis") && stores.contains("mikronis")) {
-                mikronisData.extractDataFromMikronis(items, url + query);
-            } else if (url.contains("centar-tehnike") && stores.contains("centar")) {
-                hgSpotData.extractDataFromCentarTehnike(items, url + query);
-            } else if (url.contains("ronis") && stores.contains("ronis")) {
-                ronisData.extractDataFromRonis(items, url + query);
-            } else if (url.contains("ekupi") && stores.contains("ekupi")) {
-                mallData.extractDataFromEkupi(items, url + query);
+        //for (String store : stores) {
+            //System.out.println(store);
+            if (stores.contains("Instar Informatika")) {
+                System.out.println("Instar");
+                instarData.extractDataFromInstar(items, urls.get(0) + query);
             }
+            if (stores.contains("Links")) {
+                System.out.println("Links");
+                linksData.extractDataFromLinks(items, urls.get(1) + query);
+            }
+            if (stores.contains("Sancta Domenica")) {
+                System.out.println("Sancta");
+                sanctaData.extractDataFromSanctaDomenica(items, urls.get(2) + query);
+            }
+            if (stores.contains("Mikronis")) {
+                System.out.println("Mikronis");
+                mikronisData.extractDataFromMikronis(items, urls.get(3) + query);
+            }
+            if (stores.contains("Centar Tehnike")) {
+                System.out.println("Centar");
+                hgSpotData.extractDataFromCentarTehnike(items, urls.get(4) + query);
+            }
+            if (stores.contains("Ronis")) {
+                System.out.println("Ronis");
+                ronisData.extractDataFromRonis(items, urls.get(5) + query);
+            }
+            if (stores.contains("E kupi")) {
+                System.out.println("Ekupi");
+                mallData.extractDataFromEkupi(items, urls.get(6) + query);
+          //  }
         }
         return items;
     }

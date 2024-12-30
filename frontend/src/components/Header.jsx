@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import { SlMagnifier } from "react-icons/sl"
-import './header.css'
+import { useState } from 'react';
+import { SlMagnifier } from "react-icons/sl";
+import './header.css';
 
-export default function Header({ CartIcon, 
-                                appState, setAppState, 
-                                query, setQuery, 
-                                cart,
-                                sendRequest, setSendRequest }) {
+export default function Header({ CartIcon,
+                                   appState, setAppState,
+                                   query, setQuery,
+                                   cart,
+                                   sendRequest, setSendRequest }) {
     return (
         <div className="header-wrapper">
             <div className="left-wrapper">
@@ -16,18 +16,21 @@ export default function Header({ CartIcon,
             <div className="right-wrapper">
                 <div className="searchbox-wrapper">
                     <div className="searchbox-subwrapper">
-                            <input value={query}
-                            onChange={(e) => setQuery(e.target.value)} type="text"
-                            className="search-field"
-                            placeholder="Pretražite odabrane trgovine"></input>
-                        <SlMagnifier className="search-icon" 
-                                    onClick={() => setSendRequest(!sendRequest)}
-                                    onKeyDown={(e) => {
-                                        if ((e.key === "Enter") && (appState == 0))  {
-                                            setSendRequest(!sendRequest)
-                                        } {/* Zahtjev se salje samo ako je pritisnuta tipka Enter
-                                            i ako se aplikacija nalazi u pocetnom stanju*/}
-                                    }} />
+                        <input value={query}
+                               onChange={(e) => setQuery(e.target.value)} type="text"
+                               className="search-field"
+                               placeholder="Pretražite odabrane trgovine"></input>
+                        <SlMagnifier className="search-icon"
+                                     onClick={() => {
+                                         setSendRequest(!sendRequest);
+                                         setAppState(1); // Update appState when search is performed
+                                     }}
+                                     onKeyDown={(e) => {
+                                         if ((e.key === "Enter") && (appState == 0))  {
+                                             setSendRequest(!sendRequest);
+                                             setAppState(1); // Update appState when search is performed
+                                         }
+                                     }} />
                     </div>
                 </div>
                 <div className="cart-wrapper">
@@ -36,5 +39,5 @@ export default function Header({ CartIcon,
                 </div>
             </div>
         </div>
-    )
+    );
 }

@@ -7,8 +7,6 @@ import { SlBag } from "react-icons/sl"
 import './app.css'
 import { stores } from './data/stores.js'
 
-import { exampleDataSet } from './data/exampleDataSet.js'
-
 export default function App() {
   const [appState, setAppState] = useState(0) // state of the application
   // 0 = application is in search state
@@ -29,7 +27,7 @@ export default function App() {
   const [storeSelection, setStoreSelection] = useState(stores)  // state that implements store selection
 
   /* communication with the server */
-  const [response, setResponse] = useState(exampleDataSet)  // state that contains the response to the user's query
+  const [response, setResponse] = useState([])  // state that contains the response to the user's query
   const [loading, setLoading] = useState(false)   // state that is true when content is being fetched from the API
   const [sendRequest, setSendRequest] = useState(false)   // state whose change induces sending a request to the API
 
@@ -44,6 +42,7 @@ export default function App() {
           query: query,
           stores: storeSelection
         }
+        console.log(storeSelection)
         console.log(sendObject)
 
         const fetchResponse = await fetch(`${BACKEND_URL}`, {

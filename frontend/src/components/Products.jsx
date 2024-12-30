@@ -33,7 +33,7 @@ export default function Products({ CartIcon,
                             {searchPerformed && (
                                 <div className="response-metadata-wrapper">
                                     <div className="response-count">{response.length} rezultata</div>
-                                    <div className="user-query">Upit "{searchQuery}" pretražen u {storeSelection.length}
+                                    <div className="user-query">Upit "{searchQuery}" pretražen u {storeSelection.filter(store => store.checked).length}
                                         {response.length == 1 ? " 1 trgovini" : " trgovina"}</div>
                                     <div className="align-text">{response.length} rezultata</div>
                                 </div>

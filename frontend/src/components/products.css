@@ -33,6 +33,24 @@
     font-weight: bold;
     text-decoration: underline;
 }
+.user-query {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.user-query button {
+    font-size: 1.45rem;
+    font-weight: bold;
+    background: none;
+    border: 2px solid;
+    cursor: pointer;
+    color: inherit;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
 
 .align-text {
     visibility: hidden;

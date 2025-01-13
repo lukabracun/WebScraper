@@ -19,8 +19,12 @@ public class MikronisData {
                 Item item = new Item();
                 Element linkElement = ads.selectFirst("div.item-pic a");
                 Element imgElement = ads.selectFirst("div.item-pic img.img-responsive");
+                Element titleElement = ads.selectFirst("li.item-title a");
+
+                if (titleElement != null) {
+                    item.setName(titleElement.attr("title"));
+                }
                 if (linkElement != null) {
-                    item.setName(linkElement.attr("title"));
                     String extractedUrl = linkElement.attr("href");
                     item.setUrl("https://www.mikronis.hr" + extractedUrl);
                 }

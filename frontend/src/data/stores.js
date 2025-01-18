@@ -81,4 +81,6 @@ for (let store of storesInit) {
 
 const stores = storesInit
 
+console.log(stores)
+
 export { stores }

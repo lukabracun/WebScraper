@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="fer.hr.webscraper.WebScraperApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-23T23:20:25" hostname="DESKTOP-A1M726D" time="0.639">
+<testsuite name="fer.hr.webscraper.WebScraperApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-01-18T09:13:36" hostname="DESKTOP-AV6LDIR" time="0.521">
   <properties/>
-  <testcase name="contextLoads()" classname="fer.hr.webscraper.WebScraperApplicationTests" time="0.639"/>
-  <system-out><![CDATA[00:20:24.523 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [fer.hr.webscraper.WebScraperApplicationTests]: WebScraperApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-00:20:24.620 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration fer.hr.webscraper.WebScraperApplication for test class fer.hr.webscraper.WebScraperApplicationTests
+  <testcase name="contextLoads()" classname="fer.hr.webscraper.WebScraperApplicationTests" time="0.521"/>
+  <system-out><![CDATA[10:13:35.733 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [fer.hr.webscraper.WebScraperApplicationTests]: WebScraperApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+10:13:35.816 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration fer.hr.webscraper.WebScraperApplication for test class fer.hr.webscraper.WebScraperApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -14,12 +14,12 @@
 
  :: Spring Boot ::                (v3.3.5)
 
-2024-12-24T00:20:24.951+01:00  INFO 8288 --- [WebScraper] [    Test worker] f.h.w.WebScraperApplicationTests         : Starting WebScraperApplicationTests using Java 21.0.1 with PID 8288 (started by Luka in C:\Users\Luka\IdeaProjects\WebScraper)
-2024-12-24T00:20:24.952+01:00  INFO 8288 --- [WebScraper] [    Test worker] f.h.w.WebScraperApplicationTests         : No active profile set, falling back to 1 default profile: "default"
-2024-12-24T00:20:25.636+01:00  INFO 8288 --- [WebScraper] [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2024-12-24T00:20:25.861+01:00  INFO 8288 --- [WebScraper] [    Test worker] f.h.w.WebScraperApplicationTests         : Started WebScraperApplicationTests in 1.11 seconds (process running for 2.1)
+2025-01-18T10:13:36.116+01:00  INFO 12616 --- [WebScraper] [    Test worker] f.h.w.WebScraperApplicationTests         : Starting WebScraperApplicationTests using Java 21.0.5 with PID 12616 (started by Jurica in C:\Users\Jurica\Desktop\Pro R\WebScraper)
+2025-01-18T10:13:36.116+01:00  INFO 12616 --- [WebScraper] [    Test worker] f.h.w.WebScraperApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2025-01-18T10:13:36.757+01:00  INFO 12616 --- [WebScraper] [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-01-18T10:13:36.984+01:00  INFO 12616 --- [WebScraper] [    Test worker] f.h.w.WebScraperApplicationTests         : Started WebScraperApplicationTests in 1.042 seconds (process running for 1.905)
 ]]></system-out>
-  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\Luka\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.19\154da3a65b4f4a909d3e5bdec55d1b2b4cbb6ce1\byte-buddy-agent-1.14.19.jar)
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\Jurica\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.19\154da3a65b4f4a909d3e5bdec55d1b2b4cbb6ce1\byte-buddy-agent-1.14.19.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
 WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
 WARNING: Dynamic loading of agents will be disallowed by default in a future release

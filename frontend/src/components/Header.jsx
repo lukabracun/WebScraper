@@ -24,13 +24,7 @@ export default function Header({ CartIcon,
                                      onClick={() => {
                                          setSendRequest(!sendRequest);
                                          setAppState(1); // Update appState when search is performed
-                                     }}
-                                     onKeyDown={(e) => {
-                                         if ((e.key === "Enter") && (appState == 0))  {
-                                             setSendRequest(!sendRequest);
-                                             setAppState(1); // Update appState when search is performed
-                                         }
-                                     }} />
+                                     }}/>
                     </div>
                 </div>
                 <div className="cart-wrapper">

@@ -6,6 +6,7 @@ import Products from './components/Products.jsx'
 import { SlBag } from "react-icons/sl"
 import './app.css'
 import { stores } from './data/stores.js'
+import { processResults } from './utilities/processResults.js'
 
 export default function App() {
   const [appState, setAppState] = useState(0) // state of the application
@@ -24,10 +25,13 @@ export default function App() {
   }, [cart])
 
   const [query, setQuery] = useState("")  // state that implements the user's query
+  const [previousQuery, setPreviousQuery] = useState("")
   const [storeSelection, setStoreSelection] = useState(stores)  // state that implements store selection
+  const [storeSelectionLength, setStoreSelectionLength] = useState(0)
 
   /* communication with the server */
   const [response, setResponse] = useState([])  // state that contains the response to the user's query
+  const [responseEnvelope, setResponseEnvelope] = useState({})
   const [loading, setLoading] = useState(false)   // state that is true when content is being fetched from the API
   const [sendRequest, setSendRequest] = useState(false)   // state whose change induces sending a request to the API
 
@@ -42,8 +46,7 @@ export default function App() {
           query: query,
           stores: storeSelection
         }
-        console.log(storeSelection)
-        console.log(sendObject)
+        console.log("Sending:", sendObject)
 
         const fetchResponse = await fetch(`${BACKEND_URL}`, {
           method: "POST",
@@ -58,6 +61,14 @@ export default function App() {
         } else {
           const response = await fetchResponse.json()
           setResponse(response)
+          setStoreSelectionLength(storeSelection.filter(store => store.checked).length)
+          /* console.log("Response: ")
+          console.log(response) */
+
+          setResponseEnvelope(processResults(response))
+
+          setPreviousQuery(query)
+          setQuery("")
         }
 
       } catch (error) {
@@ -74,21 +85,32 @@ export default function App() {
   }, [sendRequest])
 
   return (
-      <div className="app-container">
-        <Header CartIcon={SlBag}
-                appState={appState} setAppState={setAppState}
-                query={query} setQuery={setQuery}
-                cart={cart}
-                sendRequest={sendRequest} setSendRequest={setSendRequest}/>
-        <Sidebar appState={appState}
-                 storeSelection={storeSelection} setStoreSelection={setStoreSelection} />
-        <Products CartIcon={SlBag}
-                  appState={appState}
-                  cart={cart} setCart={setCart}
-                  query={query}
-                  storeSelection={storeSelection}
-                  response={response} setResponse={setResponse}
-                  loading={loading} />
-      </div>
+    <div className="app-container" onKeyDown={(e) => {
+      console.log(e.key)
+      if (e.key === "Enter") {
+        setSendRequest(!sendRequest);
+        setAppState(1); // Update appState when search is performed
+      }
+    }}>
+      <Header CartIcon={SlBag}
+        appState={appState} setAppState={setAppState}
+        query={query} setQuery={setQuery}
+        cart={cart}
+        sendRequest={sendRequest} setSendRequest={setSendRequest} />
+      <Sidebar appState={appState} setAppState={setAppState}
+        storeSelection={storeSelection} setStoreSelection={setStoreSelection}
+        response={response} setResponse={setResponse}
+        responseEnvelope={responseEnvelope} setResponseEnvelope={setResponseEnvelope}
+        loading={loading} />
+      <Products CartIcon={SlBag}
+        appState={appState}
+        cart={cart} setCart={setCart}
+        query={previousQuery}
+        storeSelectionLength={storeSelectionLength}
+        storeSelection={storeSelection}
+        response={response} setResponse={setResponse}
+        responseEnvelope={responseEnvelope} setResponseEnvelope={setResponseEnvelope}
+        loading={loading} />
+    </div>
   )
 }

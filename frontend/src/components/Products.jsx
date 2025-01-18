@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Item from './Item.jsx';
 import { stores } from '../data/stores.js';
+import { trgovinaMap } from '../data/trgovinaMap.js';
 import './products.css';
 
 export default function Products({ CartIcon,
@@ -8,7 +9,9 @@ export default function Products({ CartIcon,
                                      query,
                                      cart, setCart,
                                      storeSelection,
+                                     storeSelectionLength,
                                      response, setResponse,
+                                     responseEnvelope, setResponseEnvelope,
                                      loading }) {
 
     const [searchPerformed, setSearchPerformed] = useState(false);
@@ -22,6 +25,7 @@ export default function Products({ CartIcon,
         }
     }, [response, loading]);
 
+    /*
     // Utility to convert the price from "190,00 €" to a numeric value
     const parsePrice = (priceString) => {
         if (!priceString) return 0;
@@ -46,7 +50,7 @@ export default function Products({ CartIcon,
         if (response.length > 0) {
             handleSort();
         }
-    }, [sortOrder]);
+    }, [sortOrder]); */
 
     return (
         <div className="products-wrapper">
@@ -60,13 +64,12 @@ export default function Products({ CartIcon,
                         <>
                             {searchPerformed && (
                                 <div className="response-metadata-wrapper">
-                                    <div className="response-count">{response.length} rezultata</div>
+                                    <div className="response-count">{responseEnvelope.length} {responseEnvelope.length % 10 === 1 ? "rezultat" : "rezultata"}</div>
                                     <div className="user-query">
-                                        Upit "{searchQuery}" pretražen u {storeSelection.filter(store => store.checked).length}
-                                        {response.length === 1 ? " 1 trgovini" : " trgovina"}
-                                        <button onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}>
+                                        Upit "{query}" pretražen u {storeSelectionLength} {trgovinaMap[storeSelectionLength]}
+                                        {/* <button onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}>
                                             Sort by price: {sortOrder === "asc" ? "Ascending" : "Descending"}
-                                        </button>
+                                        </button> */}
                                     </div>
                                 </div>
                             )}

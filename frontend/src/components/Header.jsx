@@ -23,7 +23,7 @@ export default function Header({ CartIcon,
                         <SlMagnifier className="search-icon"
                                      onClick={() => {
                                          setSendRequest(!sendRequest);
-                                         setAppState(1); // Update appState when search is performed
+                                         /* setAppState(1); */ // Update appState when search is performed
                                      }}/>
                     </div>
                 </div>

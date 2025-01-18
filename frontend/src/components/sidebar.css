@@ -51,7 +51,6 @@
     flex-grow: 1;
     width: 100%;
     align-self: center;
-    background-color: red;
 }
 
 .stores-subwrapper {
@@ -78,6 +77,17 @@
     border-bottom: 2px solid black;
 }
 
+.store-checkbox {
+    cursor: pointer;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* selection options */
+
 .store-logo-wrapper {
     display: block;
     max-width: 100rem;
@@ -100,13 +110,61 @@
     margin-left: 5%;
 }
 
-.store-checkbox {
-    cursor: pointer;
-    width: 2.5rem;
-    height: 2.5rem;
+/* filtering and sorting options */
+
+#sort, #filter-price, #filter-state {
     display: flex;
+    flex-direction: column;
+    padding-block: 3%;
+}
+
+#sort > span {
+    cursor: default;
+}
+
+#filter-price > span {
+    cursor: default;
+}
+
+#filter-state > span {
+    cursor: default;
+}
+
+.sort-option-wrapper {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
+    width: 72%;
+    font-size: 1.05rem;
+}
+
+.sort-option-wrapper > div {
+    text-align: start;
+    flex-grow: 1;
+}
+
+.price-wrapper {
+    display: flex;
+    width: 100%;
+    padding-right: 2%;
+    margin-top: 4%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    font-size: 1.1rem;
+}
+
+.price-wrapper > div {
+    margin-left: 2%;
+}
+
+.price-search-field {
+    width: fit-content;
+    max-width: 31%;
+    background-color: white;
+    font-size: 1rem;
+    text-align: center;
 }
 
 /* store footer */

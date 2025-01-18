@@ -31,9 +31,28 @@ export default function App() {
 
   /* communication with the server */
   const [response, setResponse] = useState([])  // state that contains the response to the user's query
-  const [responseEnvelope, setResponseEnvelope] = useState({})
+  const [responseEnvelope, setResponseEnvelope] = useState({
+    response: [],
+    length: 0,
+    minPrice: 0,
+    maxPrice: Number.MAX_VALUE,
+    states: new Map()
+  })
   const [loading, setLoading] = useState(false)   // state that is true when content is being fetched from the API
   const [sendRequest, setSendRequest] = useState(false)   // state whose change induces sending a request to the API
+  const [filterOptions, setFilterOptions] = useState({
+      "price-asc": false
+      ,"price-desc": false
+      ,"name-asc": false
+      ,"name-desc": false
+      ,"min-price": null
+      ,"max-price": null
+      ,"Dostupno": true
+      ,"U vanjskom skladištu": true
+      ,"Nedostupno": true
+      ,"Rabljeno": true
+  })
+  const [newFilter, setNewFilter] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,9 +83,7 @@ export default function App() {
           setStoreSelectionLength(storeSelection.filter(store => store.checked).length)
           /* console.log("Response: ")
           console.log(response) */
-
           setResponseEnvelope(processResults(response))
-
           setPreviousQuery(query)
           setQuery("")
         }
@@ -86,10 +103,9 @@ export default function App() {
 
   return (
     <div className="app-container" onKeyDown={(e) => {
-      console.log(e.key)
       if (e.key === "Enter") {
         setSendRequest(!sendRequest);
-        setAppState(1); // Update appState when search is performed
+        /* setAppState(1); */ // Update appState when search is performed
       }
     }}>
       <Header CartIcon={SlBag}
@@ -99,8 +115,9 @@ export default function App() {
         sendRequest={sendRequest} setSendRequest={setSendRequest} />
       <Sidebar appState={appState} setAppState={setAppState}
         storeSelection={storeSelection} setStoreSelection={setStoreSelection}
-        response={response} setResponse={setResponse}
         responseEnvelope={responseEnvelope} setResponseEnvelope={setResponseEnvelope}
+        filterOptions={filterOptions} setFilterOptions={setFilterOptions}
+        newFilter={newFilter} setNewFilter={setNewFilter}
         loading={loading} />
       <Products CartIcon={SlBag}
         appState={appState}
@@ -109,7 +126,9 @@ export default function App() {
         storeSelectionLength={storeSelectionLength}
         storeSelection={storeSelection}
         response={response} setResponse={setResponse}
+        filterOptions={filterOptions}
         responseEnvelope={responseEnvelope} setResponseEnvelope={setResponseEnvelope}
+        newFilter={newFilter}
         loading={loading} />
     </div>
   )

@@ -5,6 +5,7 @@ const processResults = function (list) {
   var newList = []
   var minPrice, maxPrice
   var states = new Map()
+  var i = 0
   list.forEach(item => {
     try {
       //price conversion
@@ -20,17 +21,14 @@ const processResults = function (list) {
         }
       }
 
-      //does image exist
-      console.log("Url: ", window.location.pathname)
+      //if image doesn't exist, add logo
       if (!item.imageUrl.startsWith("http")) {
         stores.forEach((store) => {
           if (item.storeName === store.name) {
             item.imageUrl = store.img
           }
         })
-      } /* else if (item.imageUrl === "https://www.ronis.hr/img/nopic.png") {
-          item.imageUrl === stores[3].img //ronis slika
-      } */
+      } 
 
       //adding state to list of states if doesn't exist
       if (!states.has(item.state)) {
@@ -40,16 +38,17 @@ const processResults = function (list) {
       }
 
       //add to 
-      newList.push(item)
+      newList.push(Object.assign({}, item, {id: i, visible: true}))
     } catch (err) {
       console.log("Eliminated:", item)
     }
   })
   var retObj = {
-    "response": newList,
-    "length": newList.length,
-    "priceRange": { minPrice, maxPrice },
-    "states": Object.fromEntries(states),
+    response: newList,
+    length: newList.length,
+    minPrice: minPrice,
+    maxPrice: maxPrice,
+    states: states,
   }
   console.log("Response envelope:", retObj)
   return retObj

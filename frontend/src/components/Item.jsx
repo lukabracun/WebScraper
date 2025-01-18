@@ -28,7 +28,7 @@ export default function Products({ CartIcon, product }) {
                 </div>
                 <a href={product.url} target="_blank" className="button-wrapper">
                     <div id="bw1">
-                        <span>U trgovini</span>
+                        <span>U trgovinu</span>
                         <BiLinkExternal />
                     </div>
                 </a>

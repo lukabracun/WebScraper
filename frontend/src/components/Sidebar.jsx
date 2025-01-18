@@ -1,14 +1,24 @@
 import { TiArrowBack } from "react-icons/ti";
 import { BiCheckbox } from "react-icons/bi";
 import { BiCheckboxSquare } from "react-icons/bi";
+import { BiRadioCircle } from "react-icons/bi";
+import { BiRadioCircleMarked } from "react-icons/bi";
 import { AiFillGithub } from "react-icons/ai";
 
 import { stores } from '../data/stores.js';
 import './sidebar.css';
+import { useState } from "react";
 
-export default function Sidebar({ appState, setAppState, 
-                                  storeSelection, setStoreSelection, 
-                                  loading }) {
+export default function Sidebar({ appState, setAppState,
+    storeSelection, setStoreSelection,
+    responseEnvelope, setResponseEnvelope,
+    filterOptions, setFilterOptions,
+    newFilter, setNewFilter,
+    loading }) {
+
+    const [minPrice, setMinPrice] = useState(responseEnvelope.minPrice)
+    const [maxPrice, setMaxPrice] = useState(responseEnvelope.maxPrice)
+
     function changeView() {
         setAppState(0)
     }
@@ -37,19 +47,83 @@ export default function Sidebar({ appState, setAppState,
                     </div>
 
                     <div className="stores-wrapper">
-                        <div className="store-subwrapper">
-                            <div className="name-filter">
+                        <div className="stores-subwrapper" id="result-stores-subwrapper">
+                            <div className="store-wrapper" id="sort">
+                                <span className="return-to-stores-wrapper" >
+                                    Sortiranje:
+                                </span>
+                                <div className="sort-option-wrapper">
+                                    <div>Po cijeni uzlazno</div>
+                                    {filterOptions["price-asc"] ?
+                                        <BiRadioCircleMarked className="store-checkbox" onClick={
+                                            handleRadioButtonClick("price-asc", false)
+                                        }/>
+                                        : <BiRadioCircle className="store-checkbox" onClick={
+                                            handleRadioButtonClick("price-asc", true)
+                                        }/>
+                                    }
+                                </div>
+                                <div className="sort-option-wrapper">
+                                    <div>Po cijeni silazno</div>
+                                    {filterOptions["price-desc"] ?
+                                        <BiRadioCircleMarked className="store-checkbox" />
+                                        : <BiRadioCircle className="store-checkbox" />
+                                    }
+                                </div>
+                                <div className="sort-option-wrapper">
+                                    <div>Po imenu uzlazno</div>
+                                    {filterOptions["name-asc"] ?
+                                        <BiRadioCircleMarked className="store-checkbox" />
+                                        : <BiRadioCircle className="store-checkbox" />
+                                    }
+                                </div>
+                                <div className="sort-option-wrapper">
+                                    <div>Po imenu silazno</div>
+                                    {filterOptions["name-desc"] ?
+                                        <BiRadioCircleMarked className="store-checkbox" />
+                                        : <BiRadioCircle className="store-checkbox" />
+                                    }
+                                </div>
 
                             </div>
-                            <div className="sort">
 
+                            <div className="store-wrapper" id="filter-price">
+                                <span className="return-to-stores-wrapper" >
+                                    Cijena:
+                                </span>
+                                <div className="price-wrapper">
+                                    <div>
+                                        Min:
+                                    </div>
+                                    <input value={minPrice}
+                                        type="text"
+                                        placeholder={responseEnvelope.minPrice}
+                                        onChange={(e) => setMinPrice(e.target.value)}
+                                        className="search-field price-search-field"></input>
+                                    <div>
+                                        Max:
+                                    </div>
+                                    <input value={maxPrice}
+                                        type="text"
+                                        className="search-field price-search-field"
+                                        onChange={(e) => setMaxPrice(e.target.value)}
+                                        placeholder={responseEnvelope.maxPrice}></input>
+                                </div>
                             </div>
-                            <div className="price-filter">
 
+                            <div className="store-wrapper" id="filter-state">
+                                <span className="return-to-stores-wrapper" >
+                                    Stanje:
+                                </span>
+                                {
+                                    responseEnvelope.states.forEach((state) => {
+                                        <div>
+                                            <span>1</span>
+                                        </div>
+                                    })
+                                }
                             </div>
-                            <div className="state-filter">
 
-                            </div>
                         </div>
                     </div>
                 </>

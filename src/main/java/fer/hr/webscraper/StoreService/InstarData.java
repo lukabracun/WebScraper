@@ -19,7 +19,7 @@ public class InstarData {
                 Item item = new Item();
                 item.setName(ads.select("a.productEntityClick span").text());
                 item.setUrl("https://www.instar-informatika.hr" + ads.select("a.productEntityClick").attr("href"));
-                Element imgElement = ads.selectFirst("div.product-image img");
+                Element imgElement = ads.selectFirst("div.product-image img.img-fluid.productEntityClick");
                 if (imgElement != null) {
                     item.setImageUrl(imgElement.attr("src"));
                 }

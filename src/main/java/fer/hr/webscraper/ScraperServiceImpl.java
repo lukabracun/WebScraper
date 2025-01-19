@@ -87,5 +87,4 @@ public class ScraperServiceImpl {
         }
         return items;
     }
-
 }

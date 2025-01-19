@@ -97,7 +97,8 @@ export default function Home() {
             <Header CartIcon={SlBag}
                 appState={appState} setAppState={setAppState}
                 query={query} setQuery={setQuery}
-                sendRequest={sendRequest} setSendRequest={setSendRequest} />
+                sendRequest={sendRequest} setSendRequest={setSendRequest}
+                storeSelection={storeSelection} />
             <Sidebar appState={appState} setAppState={setAppState}
                 storeSelection={storeSelection} setStoreSelection={setStoreSelection}
                 responseEnvelope={responseEnvelope} setResponseEnvelope={setResponseEnvelope}

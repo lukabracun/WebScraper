@@ -9,12 +9,13 @@ export default function Products({ CartIcon,
     query,
     storeSelection,
     response, setResponse,
+    sendMessage,
     storeSelectionLength,
     loading }) {
 
     const [searchPerformed, setSearchPerformed] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
-    const [sortOrder, setSortOrder] = useState("asc");
+    const [sortOrder, setSortOrder] = useState("desc");
 
     useEffect(() => {
         if (response.length > 0 || loading) {
@@ -74,7 +75,9 @@ export default function Products({ CartIcon,
                             )}
                             <div className="products-subwrapper">
                                 {response.map(product => (
-                                    <Item CartIcon={CartIcon} product={product} key={product.id} />
+                                    <Item CartIcon={CartIcon} 
+                                        sendMessage={sendMessage}
+                                        product={product} key={product.id} />
                                 ))}
                             </div>
                         </>

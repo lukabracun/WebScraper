@@ -6,6 +6,16 @@
 
 .cart-header-wrapper {
     padding: 1%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-options {
+    padding-right: 2%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width: fit-content;
 }
 
 #products {

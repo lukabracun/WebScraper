@@ -28,7 +28,7 @@ const processResults = function (list) {
             item.imageUrl = store.img
           }
         })
-      } 
+      }
 
       //adding state to list of states if doesn't exist
       if (!states.has(item.state)) {
@@ -38,7 +38,7 @@ const processResults = function (list) {
       }
 
       //add to 
-      newList.push(Object.assign({}, item, {id: i, visible: true}))
+      newList.push(Object.assign({}, item, { id: i, visible: true }))
     } catch (err) {
       console.log("Eliminated:", item)
     }

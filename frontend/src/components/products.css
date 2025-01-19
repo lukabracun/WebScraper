@@ -2,7 +2,7 @@
     background-color: #eeeee4;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -10,12 +10,16 @@
 
 /* loader */
 .loader {
+    position: relative;
+    top: 50%;
     font-size: x-large;
     color: #9a9a9a;
 }
 
 /* error text */
 .error-text {
+    position: relative;
+    top: 50%;
     font-size: x-large;
     color: #9A9A9A;
 }
@@ -49,7 +53,7 @@
 .sort-container {
     position: relative;
     display: inline-block;
-    width: 11.4rem;
+    width: 12.6rem;
     justify-content: flex-end;
     display: flex;
     background: none;
@@ -60,7 +64,7 @@
     color: white;
     background-color: #577ab7;
     padding: 16px;
-    font-size: 16px;
+    font-size: 1rem;
     border: none;
     cursor: pointer;
     border-radius: 15px;

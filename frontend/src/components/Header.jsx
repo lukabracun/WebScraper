@@ -7,7 +7,8 @@ import Item from './Item';
 export default function Header({ CartIcon,
     appState, setAppState,
     query, setQuery,
-    sendRequest, setSendRequest }) {
+    sendRequest, setSendRequest,
+    storeSelection}) {
 
     const { cart, setCart } = useCart()
     return (
@@ -22,7 +23,8 @@ export default function Header({ CartIcon,
                         <input value={query}
                             onChange={(e) => setQuery(e.target.value)} type="text"
                             className="search-field"
-                            placeholder="Pretražite odabrane trgovine"></input>
+                            placeholder={ storeSelection.filter(store => store.checked).length == 0 ? "Odaberite barem 1 trgovinu"
+                                : "Pretražite odabrane trgovine"}></input>
                         <SlMagnifier className="search-icon"
                             onClick={() => {
                                 setSendRequest(!sendRequest);

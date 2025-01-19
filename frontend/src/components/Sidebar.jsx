@@ -37,138 +37,140 @@ export default function Sidebar({ appState, setAppState,
 
     return (
         <div className='sidebar-wrapper'>
-            {(appState === 1 && !loading) ? (
-                <>
-                    <div className="stores-header-wrapper">
-                        <div className="return-to-stores-wrapper" onClick={changeView}>
-                            <TiArrowBack className="return-icon" />
-                            <span>Završi obradu i vrati na odabir trgovina</span>
-                        </div>
-                    </div>
-
-                    <div className="stores-wrapper">
-                        <div className="stores-subwrapper" id="result-stores-subwrapper">
-                            <div className="store-wrapper" id="sort">
-                                <span className="return-to-stores-wrapper" >
-                                    Sortiranje:
-                                </span>
-                                <div className="sort-option-wrapper">
-                                    <div>Po cijeni uzlazno</div>
-                                    {filterOptions["price-asc"] ?
-                                        <BiRadioCircleMarked className="store-checkbox" onClick={
-                                            handleRadioButtonClick("price-asc", false)
-                                        }/>
-                                        : <BiRadioCircle className="store-checkbox" onClick={
-                                            handleRadioButtonClick("price-asc", true)
-                                        }/>
-                                    }
-                                </div>
-                                <div className="sort-option-wrapper">
-                                    <div>Po cijeni silazno</div>
-                                    {filterOptions["price-desc"] ?
-                                        <BiRadioCircleMarked className="store-checkbox" />
-                                        : <BiRadioCircle className="store-checkbox" />
-                                    }
-                                </div>
-                                <div className="sort-option-wrapper">
-                                    <div>Po imenu uzlazno</div>
-                                    {filterOptions["name-asc"] ?
-                                        <BiRadioCircleMarked className="store-checkbox" />
-                                        : <BiRadioCircle className="store-checkbox" />
-                                    }
-                                </div>
-                                <div className="sort-option-wrapper">
-                                    <div>Po imenu silazno</div>
-                                    {filterOptions["name-desc"] ?
-                                        <BiRadioCircleMarked className="store-checkbox" />
-                                        : <BiRadioCircle className="store-checkbox" />
-                                    }
-                                </div>
-
+            <div className="header-and-stores-wrapper">
+                {(appState === 1 && !loading) ? (
+                    <>
+                        <div className="stores-header-wrapper">
+                            <div className="return-to-stores-wrapper" onClick={changeView}>
+                                <TiArrowBack className="return-icon" />
+                                <span>Završi obradu i vrati na odabir trgovina</span>
                             </div>
-
-                            <div className="store-wrapper" id="filter-price">
-                                <span className="return-to-stores-wrapper" >
-                                    Cijena:
-                                </span>
-                                <div className="price-wrapper">
-                                    <div>
-                                        Min:
-                                    </div>
-                                    <input value={minPrice}
-                                        type="text"
-                                        placeholder={responseEnvelope.minPrice}
-                                        onChange={(e) => setMinPrice(e.target.value)}
-                                        className="search-field price-search-field"></input>
-                                    <div>
-                                        Max:
-                                    </div>
-                                    <input value={maxPrice}
-                                        type="text"
-                                        className="search-field price-search-field"
-                                        onChange={(e) => setMaxPrice(e.target.value)}
-                                        placeholder={responseEnvelope.maxPrice}></input>
-                                </div>
-                            </div>
-
-                            <div className="store-wrapper" id="filter-state">
-                                <span className="return-to-stores-wrapper" >
-                                    Stanje:
-                                </span>
-                                {
-                                    responseEnvelope.states.forEach((state) => {
-                                        <div>
-                                            <span>1</span>
-                                        </div>
-                                    })
-                                }
-                            </div>
-
                         </div>
-                    </div>
-                </>
-            ) : null}
-            {appState === 1 && loading ? (
-                <>
-                    <div className="stores-header-wrapper">
-                    </div>
-                    <div className='stores-wrapper'>
-                    </div>
-                </>
-            ) : null}
-            {appState === 0 ? (
-                <>
-                    <div className="stores-header-wrapper">
-                        <span className='stores-description'>Odaberite trgovine koje želite uključiti u pretragu:</span>
-                    </div>
-                    <div className='stores-wrapper'>
-                        <div className='stores-subwrapper'>
-                            {stores.map(store => (
-                                <div key={store.key} className="store-wrapper">
-                                    <div className="store-logo-wrapper" href={store.url}>
-                                        <a href={store.url} target="_">
-                                            <img className="store-logo" src={store.img} alt={store.name}></img>
-                                        </a>
+    
+                        <div className="stores-wrapper">
+                            <div className="stores-subwrapper" id="result-stores-subwrapper">
+                                <div className="store-wrapper" id="sort">
+                                    <span className="return-to-stores-wrapper" >
+                                        Sortiranje:
+                                    </span>
+                                    <div className="sort-option-wrapper">
+                                        <div>Po cijeni uzlazno</div>
+                                        {filterOptions["price-asc"] ?
+                                            <BiRadioCircleMarked className="store-checkbox" onClick={
+                                                handleRadioButtonClick("price-asc", false)
+                                            }/>
+                                            : <BiRadioCircle className="store-checkbox" onClick={
+                                                handleRadioButtonClick("price-asc", true)
+                                            }/>
+                                        }
                                     </div>
-                                    {storeSelection[store.key].checked ? (
-                                        <div>
-                                            <BiCheckboxSquare className="store-checkbox"
-                                                onClick={(e) => handleCheckboxClick(store.key, false)} />
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <BiCheckbox className="store-checkbox"
-                                                onClick={(e) => handleCheckboxClick(store.key, true)} />
-                                        </div>
-                                    )}
+                                    <div className="sort-option-wrapper">
+                                        <div>Po cijeni silazno</div>
+                                        {filterOptions["price-desc"] ?
+                                            <BiRadioCircleMarked className="store-checkbox" />
+                                            : <BiRadioCircle className="store-checkbox" />
+                                        }
+                                    </div>
+                                    <div className="sort-option-wrapper">
+                                        <div>Po imenu uzlazno</div>
+                                        {filterOptions["name-asc"] ?
+                                            <BiRadioCircleMarked className="store-checkbox" />
+                                            : <BiRadioCircle className="store-checkbox" />
+                                        }
+                                    </div>
+                                    <div className="sort-option-wrapper">
+                                        <div>Po imenu silazno</div>
+                                        {filterOptions["name-desc"] ?
+                                            <BiRadioCircleMarked className="store-checkbox" />
+                                            : <BiRadioCircle className="store-checkbox" />
+                                        }
+                                    </div>
+    
                                 </div>
-                            ))}
+    
+                                <div className="store-wrapper" id="filter-price">
+                                    <span className="return-to-stores-wrapper" >
+                                        Cijena:
+                                    </span>
+                                    <div className="price-wrapper">
+                                        <div>
+                                            Min:
+                                        </div>
+                                        <input value={minPrice}
+                                            type="text"
+                                            placeholder={responseEnvelope.minPrice}
+                                            onChange={(e) => setMinPrice(e.target.value)}
+                                            className="search-field price-search-field"></input>
+                                        <div>
+                                            Max:
+                                        </div>
+                                        <input value={maxPrice}
+                                            type="text"
+                                            className="search-field price-search-field"
+                                            onChange={(e) => setMaxPrice(e.target.value)}
+                                            placeholder={responseEnvelope.maxPrice}></input>
+                                    </div>
+                                </div>
+    
+                                <div className="store-wrapper" id="filter-state">
+                                    <span className="return-to-stores-wrapper" >
+                                        Stanje:
+                                    </span>
+                                    {
+                                        responseEnvelope.states.forEach((state) => {
+                                            <div>
+                                                <span>1</span>
+                                            </div>
+                                        })
+                                    }
+                                </div>
+    
+                            </div>
                         </div>
-                    </div>
-                </>
-            ) : null}
+                    </>
+                ) : null}
+                {appState === 1 && loading ? (
+                    <>
+                        <div className="stores-header-wrapper">
+                        </div>
+                        <div className='stores-wrapper'>
+                        </div>
+                    </>
+                ) : null}
+                {appState === 0 ? (
+                    <>
+                        <div className="stores-header-wrapper">
+                            <span className='stores-description'>Odaberite trgovine koje želite uključiti u pretragu:</span>
+                        </div>
+                        <div className='stores-wrapper'>
+                            <div className='stores-subwrapper'>
+                                {stores.map(store => (
+                                    <div key={store.key} className="store-wrapper">
+                                        <div className="store-logo-wrapper" href={store.url}>
+                                            <a href={store.url} target="_">
+                                                <img className="store-logo" src={store.img} alt={store.name}></img>
+                                            </a>
+                                        </div>
+                                        {storeSelection[store.key].checked ? (
+                                            <div>
+                                                <BiCheckboxSquare className="store-checkbox"
+                                                    onClick={(e) => handleCheckboxClick(store.key, false)} />
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <BiCheckbox className="store-checkbox"
+                                                    onClick={(e) => handleCheckboxClick(store.key, true)} />
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </>
+                ) : null}
+            </div>
             <div className='stores-footer-wrapper'>
-                <a href="https://github.com/lukabracun/WebScraper/tree/master">
+                <a href="https://github.com/lukabracun/WebScraper/tree/master" target="_blank">
                     <AiFillGithub />
                     <span>GitHub</span>
                 </a>

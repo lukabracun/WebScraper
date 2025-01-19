@@ -1,10 +1,9 @@
 import { useState, useContext } from 'react';
 import { BiLinkExternal } from "react-icons/bi";
-
 import './item.css'
 import { useCart } from './CartProvider';
 
-export default function Item({ CartIcon, product, openContext }) {
+export default function Item({ CartIcon, product }) {
     const { cart, setCart } = useCart()
     const stateStyle = {
         "Dostupno": {
@@ -23,11 +22,10 @@ export default function Item({ CartIcon, product, openContext }) {
 
     const handleCartAdd = (product) => {
         setCart([...cart, product])
-        console.log("Added to cart:", product)
     }
 
     const handleCartRemove = (product) => {
-        alert("Attempting to remove product:", product.name)
+        setCart(cart.filter(el => el !== product))
     }
 
     return (
@@ -51,7 +49,7 @@ export default function Item({ CartIcon, product, openContext }) {
                 <span className="product-condition" style={stateStyle[product.state]}>{product.state}</span>
                 <div className="button-wrapper">
                     {
-                        openContext ?
+                        cart.includes(product) ?
                             <div id="bw3" onClick={() => handleCartRemove(product)}>
                                 <span>Ukloni s</span>
                                 <CartIcon />

@@ -77,7 +77,7 @@ export default function Products({ CartIcon,
                                 {response.map(product => (
                                     <Item CartIcon={CartIcon} 
                                         sendMessage={sendMessage}
-                                        product={product} key={product.id} />
+                                        product={product} key={product.url} />
                                 ))}
                             </div>
                         </>

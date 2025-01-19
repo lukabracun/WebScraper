@@ -74,7 +74,7 @@ export default function Home() {
                     console.log(response) */
                     setResponseEnvelope(processResults(response))
                     setPreviousQuery(query)
-                    setQuery("")
+                    /* setQuery("") */
                 }
 
             } catch (error) {
@@ -88,12 +88,20 @@ export default function Home() {
         }
     }, [sendRequest])
 
+    //detect key press
+    useEffect(() => {
+        document.addEventListener('keydown', detectedKeyDown, true)
+    }, [])
+
+    const detectedKeyDown = (e) => {
+        if (e.key === "Enter") {
+            console.log(e.key)
+            setSendRequest(!sendRequest)
+        } 
+    }
+
     return (
-        <div className="app-container" onKeyDown={(e) => {
-            if (e.key === "Enter") {
-                setSendRequest(!sendRequest);
-            }
-        }}>
+        <div className="app-container" >
             <Header CartIcon={SlBag}
                 appState={appState} setAppState={setAppState}
                 query={query} setQuery={setQuery}

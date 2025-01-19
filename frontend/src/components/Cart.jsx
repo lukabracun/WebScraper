@@ -28,10 +28,10 @@ export default function Cart() {
                     Košarica
                 </header>
                 {
-                    cart && cart.length > 0 &&
+                    /* cart && cart.length > 0 &&
                     <div className="cart-options">
                         <div id="bw3" className="dropdown-button" onClick={() => emptyCart()}>Ukloni sve iz košarice</div>
-                    </div>
+                    </div> */
                 }
 
             </div>
@@ -40,7 +40,7 @@ export default function Cart() {
                 <div className="products-subwrapper" id="products">
                     {cart.map(product => (
                         <Item openContext={"cart"} CartIcon={SlBag}
-                            product={product} key={product.id} />
+                            product={product} key={product.url} />
                     ))}
                 </div>
             </div>

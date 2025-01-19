@@ -1,23 +1,20 @@
 import { useState, useEffect } from 'react';
 import Item from './Item.jsx';
 import { stores } from '../data/stores.js';
-import { trgovinaMap } from '../data/trgovinaMap.js';
 import './products.css';
+import { trgovinaMap } from '../data/trgovinaMap.js';
 
 export default function Products({ CartIcon,
     appState,
     query,
-    cart, setCart,
     storeSelection,
-    storeSelectionLength,
     response, setResponse,
-    responseEnvelope, setResponseEnvelope,
-    filterOptions,
-    newFilter,
+    storeSelectionLength,
     loading }) {
 
     const [searchPerformed, setSearchPerformed] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
+    const [sortOrder, setSortOrder] = useState("asc");
 
     useEffect(() => {
         if (response.length > 0 || loading) {
@@ -26,60 +23,31 @@ export default function Products({ CartIcon,
         }
     }, [response, loading]);
 
-
     /* // Utility to convert the price from "190,00 €" to a numeric value
     const parsePrice = (priceString) => {
         if (!priceString) return 0;
         return parseFloat(priceString.replace(" €", "").replace(".", "").replace(",", "."));
     }; */
 
-    const handleSort = (option) => {
-        var sortedResponse = [...response]
-        if (option === "price-asc" || option === "price-desc") {
-            sortedResponse.sort((a, b) => {
-                const priceA = a.price;
-                const priceB = b.price;
+    const handleSort = () => {
+        const sortedResponse = [...response].sort((a, b) => {
+            const priceA = a.price;
+            const priceB = b.price;
 
-                if (option === "price-asc") {
-                    return priceA - priceB;
-                } else {
-                    return priceB - priceA;
-                }
-            })
-        } else {
-            sortedResponse.sort((a, b) => {
-                const nameA = a.name;
-                const nameB = b.name;
-
-                if (option === "name-asc") {
-                    return nameA - nameB;
-                } else {
-                    return nameB - nameA;
-                }
-            })
-        }
-        setResponse(sortedResponse)
-    }
-
-    const handleFilter = (option) => {
-
-    }
+            if (sortOrder === "asc") {
+                return priceA - priceB;
+            } else {
+                return priceB - priceA;
+            }
+        });
+        setResponse(sortedResponse);
+    };
 
     useEffect(() => {
-        if (newFilter === "price-asc") {
-            handleSort("price-asc")
-        } else if (newFilter === "price-desc") {
-            handleSort("price-desc")
-        } else if (newFilter === "name-asc") {
-            handleSort("name-asc")
-        } else if (newFilter === "name-desc") {
-            handleSort("name-desc")
-        } else if (newFilter === "price-change") {
-            handleFilter("price-change")
-        } else if (newFilter === "state-change") {
-            handleFilter("state-change")
+        if (response.length > 0) {
+            handleSort();
         }
-    }, [newFilter])
+    }, [sortOrder]);
 
     return (
         <div className="products-wrapper">
@@ -87,29 +55,20 @@ export default function Products({ CartIcon,
                 <div className="loader">Učitivam podatke o proizvodima...</div>
             ) : (
                 <>
-                    {(responseEnvelope.length === 0 && searchPerformed) ? (
+                    {(response.length === 0 && searchPerformed) ? (
                         <span className="error-text">Pretraga nije vratila niti jedan rezultat.</span>
                     ) : (
                         <>
                             {searchPerformed && (
                                 <div className="response-metadata-wrapper">
-                                    <div className="response-count">{responseEnvelope.length} {responseEnvelope.length % 10 === 1 ? "rezultat" : "rezultata"}</div>
+                                    <div className="response-count">{response.length} rezultata</div>
                                     <div className="user-query">
-                                        Upit "{query}" pretražen u {storeSelectionLength} {trgovinaMap[storeSelectionLength]}
-                                        {/* <button onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}>
-                                            Sort by price: {sortOrder === "asc" ? "Ascending" : "Descending"}
-                                        </button> */}
+                                        Upit "{searchQuery}" pretražen u {storeSelectionLength} {trgovinaMap[storeSelectionLength]}
                                     </div>
                                     <div className="sort-container">
-                                        <button className="dropdown-button">
-                                            Odaberi sortiranje
+                                        <button className="dropdown-button" onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}>
+                                            {sortOrder === "asc" ? "Silazno" : "Uzlazno"} sortiraj po cijeni
                                         </button>
-                                        <div className="sort-options">
-                                            <div>Cijena, uzlazno</div>
-                                            <div>Cijena, silazno</div>
-                                            <div>Ime, uzlazno</div>
-                                            <div>Ime, silazno</div>
-                                        </div>
                                     </div>
                                 </div>
                             )}

@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { SlMagnifier } from "react-icons/sl";
+import { useCart } from './CartProvider';
 import './header.css';
+import Item from './Item';
 
 export default function Header({ CartIcon,
-                                   appState, setAppState,
-                                   query, setQuery,
-                                   cart,
-                                   sendRequest, setSendRequest }) {
+    appState, setAppState,
+    query, setQuery,
+    sendRequest, setSendRequest }) {
+
+    const { cart, setCart } = useCart()
     return (
         <div className="header-wrapper">
             <div className="left-wrapper">
@@ -17,18 +20,18 @@ export default function Header({ CartIcon,
                 <div className="searchbox-wrapper">
                     <div className="searchbox-subwrapper">
                         <input value={query}
-                               onChange={(e) => setQuery(e.target.value)} type="text"
-                               className="search-field"
-                               placeholder="Pretražite odabrane trgovine"></input>
+                            onChange={(e) => setQuery(e.target.value)} type="text"
+                            className="search-field"
+                            placeholder="Pretražite odabrane trgovine"></input>
                         <SlMagnifier className="search-icon"
-                                     onClick={() => {
-                                         setSendRequest(!sendRequest);
-                                         /* setAppState(1); */ // Update appState when search is performed
-                                     }}/>
+                            onClick={() => {
+                                setSendRequest(!sendRequest);
+                                /* setAppState(1); */ // Update appState when search is performed
+                            }} />
                     </div>
                 </div>
                 <div className="cart-wrapper">
-                    <CartIcon className="cart-icon" />
+                    <CartIcon className="cart-icon" onClick={() => window.open("/cart")}/>
                     <div className="cart-number">{cart.length > 0 && cart.length}</div>
                 </div>
             </div>

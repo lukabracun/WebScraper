@@ -65,6 +65,14 @@
     background-color: #577ab7;
 }
 
+#bw3 {
+    background-color: #794141;
+}
+
+#bw3:hover {
+    background-color: #af7676;
+}
+
 /* text */
 
 .product-name-wrapper {

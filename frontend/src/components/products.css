@@ -31,6 +31,9 @@
     margin-bottom: 1.5%;
     font-size: 1.45rem;
     font-weight: bold;
+}
+
+.response-count {
     text-decoration: underline;
 }
 
@@ -39,16 +42,23 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    
+    text-decoration: underline;
 }
 
 .sort-container {
     position: relative;
     display: inline-block;
+    width: 11.4rem;
+    justify-content: flex-end;
+    display: flex;
+    background: none;
+    text-decoration: none;
 }
 
 .dropdown-button {
-    background-color: #2a3444;
     color: white;
+    background-color: #577ab7;
     padding: 16px;
     font-size: 16px;
     border: none;
@@ -56,7 +66,12 @@
     border-radius: 15px;
 }
 
-.sort-options {
+.dropdown-button:hover {
+    background-color: #8da3c9;
+    color: black;
+}
+
+/* .sort-options {
     display: none;
     position: absolute;
     background-color: #eeeee4;
@@ -83,7 +98,7 @@
 
 .sort-container:hover .dropdown-button {
     background-color: #577ab7;
-}
+} */
 
 /* .sort-options {
     font-size: 1.45rem;

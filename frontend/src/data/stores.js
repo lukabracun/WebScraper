@@ -75,7 +75,7 @@ let storesInit = [{img: Instar_Informatika, name: "Instar Informatika", url: "ht
 let i = 0
 for (let store of storesInit) {
   store.key = i
-  store.checked = true
+  store.checked = false
   i++
 }
 

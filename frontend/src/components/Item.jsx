@@ -29,7 +29,7 @@ export default function Item({ CartIcon, product }) {
     }
 
     return (
-        <div key={product.id} className="product-wrapper">
+        <div key={product.url} className="product-wrapper">
             <div className="product-subwrapper">
                 <div className="product-image-wrapper">
                     <img src={product.imageUrl}

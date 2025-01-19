@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 20rem;
+    max-width: 20.5rem;
     max-height: 16.3rem;
 }
 
@@ -15,7 +15,7 @@
     display: grid;
     padding-top: 3%;
     padding-right: 3%;
-    grid-template-columns: 1.9fr 1fr;
+    grid-template-columns: 1.7fr 1fr;
     grid-template-rows: 2fr 0.5fr 1fr 0.7fr;
     justify-content: center;
     align-items: center;
@@ -80,6 +80,7 @@
     height: 8.3rem;
     user-select: text;
     overflow: scroll;
+    /* background-color: red; */
 }
 
 .product-name {

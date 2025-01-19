@@ -11,6 +11,7 @@ export default function Header({ CartIcon,
     storeSelection}) {
 
     const { cart, setCart } = useCart()
+    
     return (
         <div className="header-wrapper">
             <div className="left-wrapper">
@@ -23,7 +24,7 @@ export default function Header({ CartIcon,
                         <input value={query}
                             onChange={(e) => setQuery(e.target.value)} type="text"
                             className="search-field"
-                            placeholder={ storeSelection.filter(store => store.checked).length == 0 ? "Odaberite barem 1 trgovinu"
+                            placeholder={ storeSelection.filter(store => store.checked).length === 0 ? "Odaberite barem 1 trgovinu"
                                 : "Pretražite odabrane trgovine"}></input>
                         <SlMagnifier className="search-icon"
                             onClick={() => {
